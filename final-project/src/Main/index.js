@@ -5,13 +5,16 @@ import HomeGame from "./HomeGame";
 import DetailGame from "./DetailGame";
 import TableGame from "./TableGame";
 import Footer from "../Layout/Footer"
+import MovieHome from "../Movie/MovieHome";
 const Routes = () => {
   return (
     <Router>
       <>
         <Header />
         <Switch>
-          <Route exact path="/movie"></Route>
+          <Route exact path="/movie">
+            <MovieHome/>
+          </Route>
           <Route exact path="/game">
             <HomeGame />
           </Route>
