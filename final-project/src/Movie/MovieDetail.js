@@ -7,13 +7,13 @@ const MovieDetail = () => {
 //   let history = useHistory();
 //   let { id } = useParams();
   const url = "https://super-bootcamp-backend.sanbersy.com";
-  const [game, setGame] = useState([]);
+  const [movie, setMovie] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`${url}/api/movies`);
-      setGame(
+      setMovie(
         result.data.map((x) => {
           return { id: x.id, name: x.title, description: x.description, img: x.image_url };
         })
@@ -26,7 +26,7 @@ const MovieDetail = () => {
   }, [fetchTrigger]);
   return (
     <>
-      {game.map((item, index) => {
+      {movie.map((item, index) => {
         return <h1 key={index}>{item.name}</h1>;
       })}
     </>

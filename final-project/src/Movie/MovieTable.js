@@ -35,13 +35,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const MovieTable = () => {
     let history = useHistory();
     const url = "https://super-bootcamp-backend.sanbersy.com";
-    const [game, setGame] = useState([]);
+    const [movie, setMovie] = useState([]);
     const [fetchTrigger, setFetchTrigger] = useState(true);
   
     useEffect(() => {
       const fetchData = async () => {
         const result = await axios.get(`${url}/api/movies`);
-        setGame(
+        setMovie(
           result.data.map((x) => {
             return {
               id: x.id,
@@ -61,6 +61,23 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fetchData();
       }
     }, [fetchTrigger]);
+
+  //   const handleDelete = (event)=>{
+  //     let index = Number(event.target.value)
+  //     if (currentIndex !== -1){
+  //         //clear form
+  //         // setCurrentIndex(-1)
+  //         // setShowForm(false)
+  //     }
+
+  //     // filter return data without equal value
+  //     let newbuah = buah.filter((item, itemIndex)=>{
+  //         return index !== itemIndex
+  //     })
+
+  //     setBuah(newbuah)
+  // }
+
   
     return (
       <div className="tableContainer">
@@ -79,7 +96,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {game.map((item) => (
+              {movie.map((item) => (
                 <StyledTableRow key={item}>
                   <StyledTableCell component="th" scope="row">
                     <img className="imgMovieTable" src={item.img}></img>
@@ -106,9 +123,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                     <span>
                       <button className="tombolEditTableMovie">Edit</button>
                     </span>
-                    <span>
-                      <button className="tombolTableMovie">Delete</button>
-                    </span>
+                    {/* <span>
+                      <button className="tombolTableMovie" onClick={aksiDelete}>Delete</button>
+                    </span> */}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
