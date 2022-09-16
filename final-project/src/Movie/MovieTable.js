@@ -40,7 +40,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
     useEffect(() => {
       const fetchData = async () => {
-        const result = await axios.get(`${url}/api/games`);
+        const result = await axios.get(`${url}/api/movies`);
         setGame(
           result.data.map((x) => {
             return {
@@ -48,10 +48,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
               judul: x.title,
               description: x.description,
               img: x.image_url,
-              single: x.singlePlayer,
-              multi: x.multiplayer,
+              rating: x.rating,
+              duration: x.duration,
               genre: x.genre,
-              release: x.release,
+              release: x.year,
             };
           })
         );
@@ -65,15 +65,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     return (
       <div className="tableContainer">
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <Table aria-label="customized table">
             <TableHead>
               <TableRow>
                 <StyledTableCell>Image</StyledTableCell>
-                <StyledTableCell align="left">Name</StyledTableCell>
+                <StyledTableCell align="left">Film</StyledTableCell>
+                <StyledTableCell align="left">Description</StyledTableCell>
                 <StyledTableCell align="left">Genre</StyledTableCell>
-                <StyledTableCell align="left">Single Player</StyledTableCell>
-                <StyledTableCell align="left">Multi Player</StyledTableCell>
-                <StyledTableCell align="left">Platform</StyledTableCell>
+                <StyledTableCell align="left">Duration</StyledTableCell>
+                <StyledTableCell align="left">Rating</StyledTableCell>
                 <StyledTableCell align="left">Release</StyledTableCell>
                 <StyledTableCell align="left">Action</StyledTableCell>
               </TableRow>
@@ -82,32 +82,32 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
               {game.map((item) => (
                 <StyledTableRow key={item}>
                   <StyledTableCell component="th" scope="row">
-                    <img className="imgTable" src={item.img}></img>
+                    <img className="imgMovieTable" src={item.img}></img>
                   </StyledTableCell>
                   <StyledTableCell className="tableCell" align="right">
-                    {item.name}
+                    {item.judul}
+                  </StyledTableCell>
+                  <StyledTableCell className="tableCell" align="right">
+                    {item.description}
                   </StyledTableCell>
                   <StyledTableCell className="tableCell" align="right">
                     {item.genre}
                   </StyledTableCell>
                   <StyledTableCell className="tableCell" align="right">
-                    {item.single}
+                    {item.duration+" menit"}
                   </StyledTableCell>
                   <StyledTableCell className="tableCell" align="right">
-                    {item.multi}
-                  </StyledTableCell>
-                  <StyledTableCell className="tableCell" align="right">
-                    {item.platform}
+                    {item.rating+"/10"}
                   </StyledTableCell>
                   <StyledTableCell className="tableCell" align="right">
                     {item.release}
                   </StyledTableCell>
                   <StyledTableCell className="tableCell" align="right">
                     <span>
-                      <button className="btnTableGame">Edit</button>
+                      <button className="tombolEditTableMovie">Edit</button>
                     </span>
                     <span>
-                      <button className="btnTableGame">Delete</button>
+                      <button className="tombolTableMovie">Delete</button>
                     </span>
                   </StyledTableCell>
                 </StyledTableRow>
