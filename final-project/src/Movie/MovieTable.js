@@ -123,9 +123,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                     <span>
                       <button className="tombolEditTableMovie">Edit</button>
                     </span>
-                    {/* <span>
-                      <button className="tombolTableMovie" onClick={aksiDelete}>Delete</button>
-                    </span> */}
+                    <span>
+                      <button className="tombolTableMovie" >Delete</button>
+                    </span>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
