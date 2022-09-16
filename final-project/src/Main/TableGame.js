@@ -42,7 +42,16 @@ const TableGame = () => {
       const result = await axios.get(`${url}/api/games`);
       setGame(
         result.data.map((x) => {
-          return { id: x.id, name: x.name, genre: x.genre, img: x.image_url };
+          return {
+            id: x.id,
+            name: x.name,
+            genre: x.genre,
+            img: x.image_url,
+            single: x.singlePlayer,
+            multi: x.multiplayer,
+            platform: x.platform,
+            release: x.release,
+          };
         })
       );
       setFetchTrigger(false);
@@ -57,12 +66,15 @@ const TableGame = () => {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
-            <TableRow className="tableRow">
-              <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-              <StyledTableCell align="right">Calories</StyledTableCell>
-              <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <TableRow>
+              <StyledTableCell>Image</StyledTableCell>
+              <StyledTableCell align="left">Name</StyledTableCell>
+              <StyledTableCell align="left">Genre</StyledTableCell>
+              <StyledTableCell align="left">Single Player</StyledTableCell>
+              <StyledTableCell align="left">Multi Player</StyledTableCell>
+              <StyledTableCell align="left">Platform</StyledTableCell>
+              <StyledTableCell align="left">Release</StyledTableCell>
+              <StyledTableCell align="left">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -71,8 +83,32 @@ const TableGame = () => {
                 <StyledTableCell component="th" scope="row">
                   <img className="imgTable" src={item.img}></img>
                 </StyledTableCell>
-                <StyledTableCell align="right">{item.name}</StyledTableCell>
-                <StyledTableCell align="right">{item.genre}</StyledTableCell>
+                <StyledTableCell className="tableCell" align="right">
+                  {item.name}
+                </StyledTableCell>
+                <StyledTableCell className="tableCell" align="right">
+                  {item.genre}
+                </StyledTableCell>
+                <StyledTableCell className="tableCell" align="right">
+                  {item.single}
+                </StyledTableCell>
+                <StyledTableCell className="tableCell" align="right">
+                  {item.multi}
+                </StyledTableCell>
+                <StyledTableCell className="tableCell" align="right">
+                  {item.platform}
+                </StyledTableCell>
+                <StyledTableCell className="tableCell" align="right">
+                  {item.release}
+                </StyledTableCell>
+                <StyledTableCell className="tableCell" align="right">
+                  <span>
+                    <button className="btnTableGame">Edit</button>
+                  </span>
+                  <span>
+                    <button className="btnTableGame">Delete</button>
+                  </span>
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

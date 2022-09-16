@@ -3,7 +3,7 @@
 .App {
   text-align: center !important;
   background: #5CDB95;
-  min-height: 700px;
+  min-height: 800px;
 }
 
 .App-logo {
@@ -49,6 +49,16 @@
   flex-wrap: wrap;
   justify-content: center !important;
   width: 90%;
+}
+
+.btnTableGame{
+  width: 60px;
+  margin: 5px;
+  border: 0;
+  background: #05386B;
+  color: #EDF5E1;
+  border-radius: 10px;
+
 }
 
 .cardTitle{
@@ -109,14 +119,14 @@ img{
 }
 .imgTable{
   width: 50%;
-  height: 50%;
+  height: 70px;
   object-fit: cover;
-  border-radius: 45px 45px 0 0;
-  opacity: 0.7;
+  border-radius: 45px 45px ;
+  opacity: 0.9;
 }
 
-.tableRow{
-  background: #05386B !important;
+.tableCell{
+  text-align: left !important;
 }
 
  span {
