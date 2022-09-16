@@ -1,28 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import Footer from './Layout/Footer';
-
+import "./App.css";
+import Routes from "./Main";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <>
-        <h1>HEADER</h1>
-          {/* <nav></nav> */}
-        </>
-      </header>
-      <footer>
-        <>
-        <Footer/>
-        </>
-      </footer>
-
+      <Routes />
     </div>
     
   );
 }
-<footer>
-      <Footer/>
-</footer>
+
 export default App;
 
