@@ -23,6 +23,9 @@ const Header = () => {
             <Link className="navColor" to="/game/table">
               List Game
             </Link>
+            <Link className="navColor" to="/Movie/table">
+              List Movie
+            </Link>
           </Nav>
         </Container>
       </Navbar>
