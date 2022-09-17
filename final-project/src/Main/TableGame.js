@@ -36,7 +36,9 @@ const TableGame = () => {
   const url = "https://super-bootcamp-backend.sanbersy.com";
   const [game, setGame] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(true);
-
+  const [searchText, setSearchText] = useState("");
+  // exclude column list from filter
+  const excludeColumns = ["name", "genre"];
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`${url}/api/games`);
@@ -60,61 +62,132 @@ const TableGame = () => {
       fetchData();
     }
   }, [fetchTrigger]);
+  // handle change event of search input
+  const handleChange = (value) => {
+    setSearchText(value);
+    filterData(value);
+  };
+
+  // filter records by search text
+  const filterData = (value) => {
+    const lowercasedValue = value.toLowerCase().trim();
+    if (lowercasedValue === "") setGame(game);
+    else {
+      const filteredData = game.filter((item) => {
+        return Object.keys(item).some((key) =>
+          excludeColumns.includes(key)
+            ? false
+            : item[key].toString().toLowerCase().includes(lowercasedValue)
+        );
+      });
+      setGame(filteredData);
+    }
+  };
+
+  //addGame
+  const addGame = () => {
+    history.push("/game/table/create");
+  };
+
+  //editGame
+  const handleEdit = async (event) => {
+    let idGame = Number(event.target.value);
+    history.push(`/game/${idGame}/edit`);
+  };
+
+  //deleteGame
+  const handleDelete = (event) => {
+    let idGame = parseInt(event.target.value);
+    axios
+      .delete(`${url}/api/games/${idGame}`)
+      .then(() => {
+        setFetchTrigger(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
-    <div className="tableContainer">
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Image</StyledTableCell>
-              <StyledTableCell align="left">Name</StyledTableCell>
-              <StyledTableCell align="left">Genre</StyledTableCell>
-              <StyledTableCell align="left">Single Player</StyledTableCell>
-              <StyledTableCell align="left">Multi Player</StyledTableCell>
-              <StyledTableCell align="left">Platform</StyledTableCell>
-              <StyledTableCell align="left">Release</StyledTableCell>
-              <StyledTableCell align="left">Action</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {game.map((item) => (
-              <StyledTableRow key={item}>
-                <StyledTableCell component="th" scope="row">
-                  <img className="imgTable" src={item.img}></img>
-                </StyledTableCell>
-                <StyledTableCell className="tableCell" align="right">
-                  {item.name}
-                </StyledTableCell>
-                <StyledTableCell className="tableCell" align="right">
-                  {item.genre}
-                </StyledTableCell>
-                <StyledTableCell className="tableCell" align="right">
-                  {item.single}
-                </StyledTableCell>
-                <StyledTableCell className="tableCell" align="right">
-                  {item.multi}
-                </StyledTableCell>
-                <StyledTableCell className="tableCell" align="right">
-                  {item.platform}
-                </StyledTableCell>
-                <StyledTableCell className="tableCell" align="right">
-                  {item.release}
-                </StyledTableCell>
-                <StyledTableCell className="tableCell" align="right">
-                  <span>
-                    <button className="btnTableGame">Edit</button>
-                  </span>
-                  <span>
-                    <button className="btnTableGame">Delete</button>
-                  </span>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <>
+      <h5>Ya</h5>
+      <br />
+      <br />
+      Search:{" "}
+      <input
+        style={{ marginLeft: 5 }}
+        type="text"
+        placeholder="Type to search..."
+        value={searchText}
+        onChange={(e) => handleChange(e.target.value)}
+      />
+      <div className="tableContainer">
+        <button onClick={addGame}>Add Game</button>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Image</StyledTableCell>
+                <StyledTableCell align="left">Name</StyledTableCell>
+                <StyledTableCell align="left">Genre</StyledTableCell>
+                <StyledTableCell align="left">Single Player</StyledTableCell>
+                <StyledTableCell align="left">Multi Player</StyledTableCell>
+                <StyledTableCell align="left">Platform</StyledTableCell>
+                <StyledTableCell align="left">Release</StyledTableCell>
+                <StyledTableCell align="left">Action</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {game.map((item, index) => (
+                <StyledTableRow key={index}>
+                  <StyledTableCell component="th" scope="row">
+                    <img className="imgTable" src={item.img}></img>
+                  </StyledTableCell>
+                  <StyledTableCell className="tableCell" align="right">
+                    {item.name}
+                  </StyledTableCell>
+                  <StyledTableCell className="tableCell" align="right">
+                    {item.genre}
+                  </StyledTableCell>
+                  <StyledTableCell className="tableCell" align="right">
+                    {item.single === 1 ? "Ya" : "Tidak"}
+                  </StyledTableCell>
+                  <StyledTableCell className="tableCell" align="right">
+                    {item.multi === 1 ? "Ya" : "Tidak"}
+                  </StyledTableCell>
+                  <StyledTableCell className="tableCell" align="right">
+                    {item.platform}
+                  </StyledTableCell>
+                  <StyledTableCell className="tableCell" align="right">
+                    {item.release}
+                  </StyledTableCell>
+                  <StyledTableCell className="tableCell" align="right">
+                    <span>
+                      <button
+                        className="btnTableGame"
+                        onClick={handleEdit}
+                        value={item.id}
+                      >
+                        Edit
+                      </button>
+                    </span>
+                    <span>
+                      <button
+                        className="btnTableGame"
+                        onClick={handleDelete}
+                        value={item.id}
+                      >
+                        Delete
+                      </button>
+                    </span>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </>
   );
 };
 export default TableGame;
