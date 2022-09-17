@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const MovieDetail = () => {
-//   let history = useHistory();
-//   let { id } = useParams();
+  let history = useHistory();
+  let { id } = useParams();
   const url = "https://super-bootcamp-backend.sanbersy.com";
   const [movie, setMovie] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(true);

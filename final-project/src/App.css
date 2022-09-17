@@ -287,3 +287,20 @@ img{
   color: #EDF5E1;
   border-radius: 5px;
 }
+
+.footer-costum{
+  color: antiquewhite;
+}
+
+.footer-costum h3{
+  margin: auto;
+}
+.addMovie{
+  border-radius: 5px;
+  float: right;
+  margin: 20px;
+  background-color: #05386B;
+  color: aliceblue;
+  border: 0;
+  padding: 10px;
+}

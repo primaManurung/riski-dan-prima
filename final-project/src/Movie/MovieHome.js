@@ -30,6 +30,7 @@ function MovieHome() {
 
   return (
     <>
+    <button className="addMovie">add Movie Collection</button>
       <div className="gamesTittle">
         Movie Collection
       </div>
@@ -48,13 +49,14 @@ function MovieHome() {
                   onClick={handleDetail}
                   value={item.id}
                 >
-                  Detail Game
+                  See more...
                 </button>
               </div>
             </div>
           );
         })}
       </div>
+      
     </>
   );
 }

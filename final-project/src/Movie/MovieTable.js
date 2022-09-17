@@ -8,8 +8,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import axios from "axios";
+import Router from "router";
+import MovieForm from "./MovieForm";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -80,6 +82,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
   
     return (
+      <Router>
       <div className="tableContainer">
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
@@ -132,7 +135,13 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             </TableBody>
           </Table>
         </TableContainer>
+        <switch>
+          <Route exact path={"/MovieForm"}>
+            <MovieForm/>
+          </Route>
+        </switch>
       </div>
+      </Router>
     );
   };
   export default MovieTable;

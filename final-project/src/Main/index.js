@@ -7,6 +7,7 @@ import TableGame from "./TableGame";
 import Footer from "../Layout/Footer"
 import MovieHome from "../Movie/MovieHome";
 import MovieTable from "../Movie/MovieTable";
+import MovieDetail from "../Movie/MovieDetail";
 
 
 
@@ -29,7 +30,12 @@ const Routes = () => {
           <Route exact path="/movie/table">
             <MovieTable />
           </Route>
-          <Route exact path="/game/:id/detail"></Route>
+          <Route exact path="/game/:id/detail">
+            <DetailGame/>
+          </Route>
+          <Route exact path="/movie/:id/detail">
+            <MovieDetail/>
+          </Route>
         </Switch>
         <Footer/>
       </>
