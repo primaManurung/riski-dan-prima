@@ -8,10 +8,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
-import { Route, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Router from "router";
-import MovieForm from "./MovieForm";
+// import Router from "router";
+// import MovieForm from "./MovieForm";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -64,26 +64,32 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       }
     }, [fetchTrigger]);
 
-  //   const handleDelete = (event)=>{
-  //     let index = Number(event.target.value)
-  //     if (currentIndex !== -1){
-  //         //clear form
-  //         // setCurrentIndex(-1)
-  //         // setShowForm(false)
-  //     }
 
-  //     // filter return data without equal value
-  //     let newbuah = buah.filter((item, itemIndex)=>{
-  //         return index !== itemIndex
-  //     })
+    const handleEdit = async (event)=>{
+      let idScore = Number(event.target.value)
 
-  //     setBuah(newbuah)
-  // }
+      history.push(`/movie/${idScore}/edit`)
+
+
+  }
+
+
+
+
+    const handleDelete = (event)=>{
+      let idMovie = parseInt(event.target.value)
+      axios.delete(`${url}/api/movies/${idMovie}`).then(()=>{
+          setFetchTrigger(true)
+      }).catch((err)=>{
+          console.log(err)
+      })
+  }
+
 
   
     return (
-      <Router>
       <div className="tableContainer">
+        <button className="addMovie">add Movie Collection</button>
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>
@@ -124,10 +130,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
                   </StyledTableCell>
                   <StyledTableCell className="tableCell" align="right">
                     <span>
-                      <button className="tombolEditTableMovie">Edit</button>
+                      <button className="tombolEditTableMovie"onClick={handleEdit}>Edit</button>
                     </span>
                     <span>
-                      <button className="tombolTableMovie" >Delete</button>
+                      <button className="tombolTableMovie"onClick={handleDelete}>Delete</button>
                     </span>
                   </StyledTableCell>
                 </StyledTableRow>
@@ -135,13 +141,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
             </TableBody>
           </Table>
         </TableContainer>
-        <switch>
-          <Route exact path={"/MovieForm"}>
-            <MovieForm/>
-          </Route>
-        </switch>
+      
       </div>
-      </Router>
     );
   };
   export default MovieTable;
