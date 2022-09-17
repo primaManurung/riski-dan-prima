@@ -74,6 +74,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }
 
 
+  const addNewMovie = ()=>{
+    history.push("/movie/create")
+}
+
+
 
 
     const handleDelete = (event)=>{
@@ -89,7 +94,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
     return (
       <div className="tableContainer">
-        <button className="addMovie">add Movie Collection</button>
+        <button className="addMovie"onClick={addNewMovie}>add Movie Collection</button>
         <TableContainer component={Paper}>
           <Table aria-label="customized table">
             <TableHead>

@@ -8,6 +8,7 @@ import Footer from "../Layout/Footer"
 import MovieHome from "../Movie/MovieHome";
 import MovieTable from "../Movie/MovieTable";
 import MovieDetail from "../Movie/MovieDetail";
+import MovieForm from "../Movie/MovieForm";
 
 
 
@@ -35,6 +36,12 @@ const Routes = () => {
           </Route>
           <Route exact path="/movie/:id/detail">
             <MovieDetail/>
+          </Route>
+          <Route exact path="/movie/:id/edit">
+            <MovieForm/>
+          </Route>
+          <Route exact path="/movie/create">
+            <MovieForm/>
           </Route>
         </Switch>
         <Footer/>

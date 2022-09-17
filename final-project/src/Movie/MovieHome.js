@@ -30,7 +30,12 @@ function MovieHome() {
 
   return (
     <>
+    <>
     
+    </>
+    
+
+
       <div className="gamesTittle">
         Movie Collection
       </div>
