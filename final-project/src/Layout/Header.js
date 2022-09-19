@@ -3,29 +3,56 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../Auth/UserContext";
 
 const Header = () => {
+  const [user, setUser] = useContext(UserContext);
+  const logout = () => {
+    setUser(null);
+    localStorage.clear();
+  };
   return (
     <>
-      <Navbar className="bgNavbar">
+      <Navbar className={user ? ` bgNavbar` : `bgNavbar`}>
         <Container>
-          <Navbar.Brand className="navColorBrand">Prime&amp;Risk</Navbar.Brand>
-          <Nav className="me-auto">
-            <Link className="navColor" to="/home">
-              Home
-            </Link>
-            <Link className="navColor" to="/game">
+          {user ? (
+            <>
+              {" "}
+              <Navbar.Brand className="navColorBrand">
+                Prime&amp;Risk
+              </Navbar.Brand>
+            </>
+          ) : (
+            <>
+              <Navbar.Brand className="navColorBrand">
+                Prime&amp;Risk
+              </Navbar.Brand>
+            </>
+          )}
+
+          <Nav className="me-auto textCenter">
+            <Link className="navColor keyFont" to="/game">
               Games
             </Link>
-            <Link className="navColor" to="/movie">
+            <Link className="navColor keyFont" to="/movie">
               Movie
             </Link>
-            <Link className="navColor" to="/game/table">
-              List Game
-            </Link>
-            <Link className="navColor" to="/Movie/table">
-              List Movie
-            </Link>
+
+            {user ? (
+              <span onClick={logout} className="navColor">
+                Logout
+              </span>
+            ) : (
+              <>
+                <Link className="navColor" to="/register">
+                  Register
+                </Link>{" "}
+                <Link className="navColor" to="/login">
+                  Login
+                </Link>
+              </>
+            )}
           </Nav>
         </Container>
       </Navbar>

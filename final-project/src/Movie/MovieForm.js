@@ -1,21 +1,15 @@
+// const MovieForm = () =>{
+//     let initalForm ={
+//         name: "",
+//         course: "",
+//         score: 0
+//     }
 
+//     const url = "https://super-bootcamp-backend.sanbersy.com"
 
-const MovieForm = () =>{
-    let initalForm ={
-        name: "",
-        course: "",
-        score: 0
-    }
+//     return(
 
-    const url = "https://super-bootcamp-backend.sanbersy.com"
-    
+//     )
+// }
 
-
-
-
-    return(
-       
-    )
-}
-
-export default MovieForm
+// export default MovieForm

@@ -1,12 +1,15 @@
 import "./App.css";
-import Routes from "./Main";
-import TableData from "./Main/Table";
+import React from "react";
+import Routes from "./Routes";
+import { UserProvider } from "./Auth/UserContext";
 
 function App() {
   return (
-    <div className="App">
-      <Routes />
-    </div>
+    <>
+      <UserProvider>
+        <Routes />
+      </UserProvider>
+    </>
   );
 }
 

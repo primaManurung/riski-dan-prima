@@ -30,30 +30,31 @@ function MovieHome() {
 
   return (
     <>
-      <div className="gamesTittle">
-        Movie Collection
-      </div>
-      <div className="cardMovieContainer">
-        {movie.map((item, index) => {
-          return (
-            <div className="movieCard" key={index}>
-              <img className="imgMovie" src={item.img} />
-              <div className="containerCard">
-                <h6>
-                  <b>{item.name}</b>
-                </h6>
-                <p>{item.genre}</p>
-                <button
-                  className="buttonMovie"
-                  onClick={handleDetail}
-                  value={item.id}
-                >
-                  Detail Game
-                </button>
+      <div className="MainContainer">
+        <button className="addMovie">add Movie Collection</button>
+        <div className="gamesTittle">Movie Collection</div>
+        <div className="cardMovieContainer">
+          {movie.map((item, index) => {
+            return (
+              <div className="movieCard" key={index}>
+                <img className="imgMovie" src={item.img} />
+                <div className="containerCard">
+                  <h6>
+                    <b>{item.name}</b>
+                  </h6>
+                  <p>{item.genre}</p>
+                  <button
+                    className="buttonMovie"
+                    onClick={handleDetail}
+                    value={item.id}
+                  >
+                    See more...
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </>
   );

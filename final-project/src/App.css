@@ -1,9 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap');
+@import '~antd/dist/antd.css';
+@import "rsuite/dist/rsuite.css";
+.textCenter{
+  margin: auto ;
+  text-align: center;
+}
 
 .App {
   text-align: center !important;
   background: #5CDB95;
   min-height: 800px;
+}
+.MainContainer{
+  text-align: center !important;
+  background: #5CDB95;
+  border: 2px solid #5CDB95;
+
+}
+
+.MainContainerUser{
+  text-align: center !important;
+  background: #5CDB95;
+  border: 2px solid #5CDB95;
+  min-height: 600px;
+  display: flex;
+}
+.SideContainerUser{
+  text-align: center !important;
+  background: #5CDB95;
+  border: 2px solid #5CDB95;
+  display: flex;
+  /* flex-wrap: wrap; */
+  width: 100%;
+}
+.sideNav{
+  background: #5CDB95;
+  color: #05386B !important;
+  width: 15% !important;
+  border-right: 2px dashed #05386B;
+}
+.inputSearch{
+  background: #5CDB95;
+  border: 3px solid #05386B;
+  color: #05386B !important;
+  width: 25%;
+  margin-bottom: 10px;
+}
+
+.togelSideNav{
+  background: #5CDB95 !;
+  color: #05386B !important;
+  width: 200px;
+
+}
+.AddGame{
+  background-color: #05386B;
+  color: #5CDB95;
+  border-radius: 14px;
+}
+.AddGame:hover{
+  background-color: #05386B;
+  color: #EDF5E1;
+  border-radius: 14px;
+
 }
 
 .App-logo {
@@ -12,31 +71,41 @@
 }
 
 .bgNavbar{
+  background: #05386B;
+  color: #5CDB95 !important;
+  font-weight: 900;
+  height: 60px;
+}
+.bgNavbarUser{
   background: #5CDB95;
   color: #05386B !important;
   font-weight: 900;
+  height: 60px;
 }
 
 .navColor:hover{
-  background: #05386B;
-  color: #5CDB95;
+  background: #5CDB95;
+  color: #05386B;
 }
 .navColorBrand{
-  background: #05386B;
-  color: #5CDB95 !important;
+  background: #5CDB95;
+  color:  #05386B!important;
   padding:10px;
   border-radius: 10px;
 }
 .navColor {
-  color: #05386B;
+  color: #5CDB95;
   font-family: 'Playfair Display', serif;
   text-decoration: none;
-  margin-left: 10px;
+  margin: 10px;
+  font-weight: 600;
 }
 .navColor2{
   margin-left: 100%;
 }
-
+.detailContainer{
+  margin: auto;
+}
 .tableContainer{
   width: 90%;
   margin: 50px auto;
@@ -51,6 +120,17 @@
   width: 90%;
 }
 
+.CardContainerUser{
+  margin-top: 30px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center !important;
+}
+.bgColor{
+  background: #5CDB95 !important;
+  padding-top: 15%;
+}
 .btnTableGame{
   width: 60px;
   margin: 5px;
@@ -60,6 +140,19 @@
   border-radius: 10px;
 
 }
+.togelSidenav{
+  color: black;
+}
+
+.textColor{
+  color: #05386B;
+  font-weight: 800;
+}
+.textColorUser{
+
+  color: #05386B;
+  font-weight: 900;
+}
 
 .cardTitle{
   font-weight: 900 !important;
@@ -68,9 +161,16 @@
 }
 .gamesTittle{
   font-weight: 900;
-  font-size: 50px;
+  font-size: 45px;
   margin: 30px 0;
   color: #05386B;
+  background: #5CDB95;
+  text-align: center;
+}
+
+.tableTable{
+  background: #05386B !important;
+  color: #5CDB95 !important;
 }
 
 .buttonGames{
@@ -87,6 +187,20 @@
   margin: 15px;
   border-radius: 50px !important;
   background:#05386B !important;
+}
+.cardUser {
+  box-shadow: 8px 8px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 26%;
+  margin: 15px;
+  border-radius: 50px !important;
+  background:#05386B !important;
+}
+
+@media only screen and (max-width: 800px) {
+  .card {
+    width: 25%;
+  }
 }
 
 .card:hover {
@@ -118,6 +232,32 @@ img{
   border-radius: 45px 45px 0 0;
   opacity: 0.7;
 }
+
+.detailDiv{
+  height: 400px;
+  width: 400px;
+  margin: auto;
+}
+.detailDivMargin{
+  margin: auto;
+
+}
+
+.detailImg{
+  object-fit: cover;
+  border-radius: 45px ;
+  opacity: 1;
+  border:8px solid #05386B;
+}
+
+.detailMargin{
+  margin-bottom: 10px !important ;
+  border: 2px solid ;
+  border-radius: 10px;
+  background: #05386B;
+  color: #5CDB95;
+}
+
 .imgTable{
   width: 50%;
   height: 70px;
@@ -130,13 +270,17 @@ img{
   text-align: left !important;
 }
 
- span {
+.keyFont {
   animation: blink linear infinite 2s;
 }
 
- span:nth-of-type(2) {
+.keyFont:nth-of-type(2) {
   animation: blink linear infinite 3s;
 }
+
+ /* span:nth-of-type(2) {
+  animation: blink linear infinite 3s;
+} */
 
 @keyframes blink {
   78% {
@@ -287,4 +431,21 @@ img{
   background: #0b0b0b;
   color: #EDF5E1;
   border-radius: 5px;
+}
+
+.footer-costum{
+  color: antiquewhite;
+}
+
+.footer-costum h3{
+  margin: auto;
+}
+.addMovie{
+  border-radius: 5px;
+  float: right;
+  margin: 20px;
+  background-color: #05386B;
+  color: aliceblue;
+  border: 0;
+  padding: 10px;
 }
