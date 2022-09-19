@@ -20,6 +20,7 @@ const Login = () => {
         var currentUser = { name: user.name, email: user.email, token };
         setUser(currentUser);
         localStorage.setItem("user", JSON.stringify(currentUser));
+        alert("Login Berhasil");
       })
       .catch((err) => {
         alert(err);

@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import { useContext } from "react";
-
+import SideNavMenu from "../Layout/Sidenav";
+import Card from "react-bootstrap/Card";
+import Table from "react-bootstrap/Table";
 const FormGame = () => {
   let history = useHistory();
   let { id } = useParams();
@@ -11,8 +13,10 @@ const FormGame = () => {
   const [inputImg, setInputImg] = useState("");
   const [inputName, setInputName] = useState("");
   const [inputGenre, setInputGenre] = useState("");
-  const [inputSingle, setInputSingle] = useState();
-  const [inputMulti, setInputMulti] = useState();
+  const [inputSingle, setInputSingle] = useState(0);
+  const [inputSingle2, setInputSingle2] = useState(true);
+  const [inputMulti2, setInputMulti2] = useState(true);
+  const [inputMulti, setInputMulti] = useState(0);
   const [inputPlatform, setInputPlatform] = useState("");
   const [inputRelease, setInputRelease] = useState("");
   const [currentId, setCurrentId] = useState(null);
@@ -117,58 +121,50 @@ const FormGame = () => {
     setInputRelease("");
   };
 
+  const getClick = (data) => {
+    if (data === "Yes") {
+      if (inputSingle2 === true) {
+        console.log(data);
+        setInputSingle(1);
+      } else {
+        console.log("No");
+        setInputSingle(0);
+      }
+      setInputSingle2(!inputSingle2);
+    }
+  };
+  const getClick2 = (data) => {
+    if (data === "Yes") {
+      if (inputMulti2 === true) {
+        console.log(data);
+        setInputMulti(1);
+      } else {
+        console.log("No");
+        setInputMulti(0);
+      }
+      setInputMulti2(!inputMulti2);
+    }
+  };
+
   return (
     <>
-      <div className="MainContainer">
-        <div className="container">
-          <h1>Form Game </h1>
-          <div className="wrapper">
-            <form className="form" onSubmit={handleSubmit}>
-              <div className="inputfield">
-                <label>Img : </label>
-                <input
-                  type="text"
-                  required
-                  className="input"
-                  name="image_url"
-                  value={inputImg}
-                  onChange={handleImgChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <label>Name : </label>
-                <input
-                  type="text"
-                  required
-                  className="input"
-                  name="name"
-                  value={inputName}
-                  onChange={handleNameChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <label>Genre</label>
-                <input
-                  required
-                  type="text"
-                  className="input"
-                  name="genre"
-                  value={inputGenre}
-                  onChange={handleGenreChange}
-                ></input>
-              </div>{" "}
-              <div className="inputfield">
-                <label>Single Player </label>
+      <div className={user ? `MainContainerUser` : `MainContainer`}>
+        <div className={user ? `SideContainerUser` : `SideContainer`}>
+          {user ? <SideNavMenu /> : <></>}
+          <div className="textCenter">
+            <div className="gamesTittle">Form Game</div>
+            <div>
+              <div className="inputfieldSingle">
                 <input
                   required
                   className="input"
                   value={inputSingle}
-                  name="singlePlayer"
                   type="number"
+                  name="singlePlayer"
                   onChange={handleSingleChange}
                 ></input>
-              </div>{" "}
-              <div className="inputfield">
+              </div>
+              <div className="inputfieldSingle">
                 <label>Multi Player </label>
                 <input
                   required
@@ -179,36 +175,125 @@ const FormGame = () => {
                   onChange={handleMultiChange}
                 ></input>
               </div>
-              <div className="inputfield">
-                <label>Platform </label>
-                <input
-                  required
-                  className="input"
-                  value={inputPlatform}
-                  name="singlePlayer"
-                  onChange={handlePlatformChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <label>Release</label>
-                <input
-                  required
-                  className="input"
-                  value={inputRelease}
-                  name="singlePlayer"
-                  onChange={handleReleaseChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <button className="btn" type="submit">
-                  Submit
-                </button>
-              </div>
-            </form>
+
+              <Table className="formTable">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Form Game</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Link Image :</td>
+                    <td>
+                      {" "}
+                      <input
+                        type="text"
+                        required
+                        className="input"
+                        name="image_url"
+                        value={inputImg}
+                        onChange={handleImgChange}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Name : </td>
+                    <td>
+                      <input
+                        type="text"
+                        required
+                        className="input"
+                        name="name"
+                        value={inputName}
+                        onChange={handleNameChange}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Genre :</td>
+                    <td>
+                      {" "}
+                      <input
+                        required
+                        type="text"
+                        className="input"
+                        name="genre"
+                        value={inputGenre}
+                        onChange={handleGenreChange}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>
+                      SinglePlayer :{" "}
+                      <span>{inputSingle === 1 ? "Yes" : "No"}</span>{" "}
+                      <input
+                        type="checkbox"
+                        className="input"
+                        name="singlePlayer"
+                        value={inputSingle2}
+                        onChange={() => getClick("Yes")}
+                        // onChange={updateClick}
+                      />
+                      Centang Untuk Yes{" "}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>
+                      Multiplayer :{" "}
+                      <span>{inputMulti === 1 ? "Yes" : "No"}</span>{" "}
+                      <input
+                        type="checkbox"
+                        className="input"
+                        name="singlePlayer"
+                        value={inputMulti2}
+                        onClick={() => getClick2("Yes")}
+                        // onChange={updateClick}
+                      />
+                      Centang Untuk Yes
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Platform :</td>
+                    <td>
+                      <input
+                        required
+                        className="input"
+                        value={inputPlatform}
+                        name="singlePlayer"
+                        onChange={handlePlatformChange}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Release :</td>
+                    <td>
+                      <input
+                        required
+                        className="input"
+                        value={inputRelease}
+                        name="singlePlayer"
+                        onChange={handleReleaseChange}
+                      ></input>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <button
+                className="btnTableGame"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
 };
+
 export default FormGame;

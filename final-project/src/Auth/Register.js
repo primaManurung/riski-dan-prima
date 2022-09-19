@@ -21,6 +21,7 @@ const Register = () => {
         var currentUser = { name: user.name, email: user.email, token };
         setUser(currentUser);
         localStorage.setItem("user", JSON.stringify(currentUser));
+        alert("Register Berhasil");
       })
       .catch((err) => {
         alert(err);

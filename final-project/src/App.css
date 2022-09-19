@@ -4,6 +4,7 @@
 .textCenter{
   margin: auto ;
   text-align: center;
+
 }
 
 .App {
@@ -11,6 +12,12 @@
   background: #5CDB95;
   min-height: 800px;
 }
+
+.formTable{
+  text-align: left;
+  border: 0px !important;
+}
+
 .MainContainer{
   text-align: center !important;
   background: #5CDB95;
@@ -33,6 +40,11 @@
   /* flex-wrap: wrap; */
   width: 100%;
 }
+.inputfieldSingle{
+  display: none;
+visibility: hidden;
+}
+
 .sideNav{
   background: #5CDB95;
   color: #05386B !important;
@@ -172,6 +184,10 @@
   background: #05386B !important;
   color: #5CDB95 !important;
 }
+td{
+  color: #05386B;
+  font-weight: 700;
+}
 
 .buttonGames{
   background: #5CDB95 ;
@@ -250,6 +266,10 @@ img{
   border:8px solid #05386B;
 }
 
+.displayFlex{
+  display: flex;
+}
+
 .detailMargin{
   margin-bottom: 10px !important ;
   border: 2px solid ;
@@ -257,6 +277,14 @@ img{
   background: #05386B;
   color: #5CDB95;
 }
+.detailMargin2{
+  margin-bottom: 10px !important ;
+  border: 2px solid ;
+  border-radius: 10px;
+  background: #05386B;
+  color: #5CDB95;
+}
+
 
 .imgTable{
   width: 50%;

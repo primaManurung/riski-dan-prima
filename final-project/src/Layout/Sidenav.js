@@ -34,7 +34,7 @@ const SideNavMenu = () => {
             onSelect={setActiveKey}
           >
             <Nav.Item className="bgColor" eventKey="2" icon={<GroupIcon />}>
-              <Link to="/game/" className="textColorUser">
+              <Link to="/change-password" className="textColorUser">
                 {user.name}
               </Link>
             </Nav.Item>
@@ -49,7 +49,7 @@ const SideNavMenu = () => {
               </Link>
             </Nav.Item>
             <Nav.Item className="bgColor" eventKey="2" icon={<GroupIcon />}>
-              <Link to="/game/table" className="textColor">
+              <Link to="/movie/table" className="textColor">
                 List Movie
               </Link>
             </Nav.Item>

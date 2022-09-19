@@ -10,6 +10,7 @@ const Header = () => {
   const [user, setUser] = useContext(UserContext);
   const logout = () => {
     setUser(null);
+    alert("Logout Sukses");
     localStorage.clear();
   };
   return (

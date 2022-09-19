@@ -12,17 +12,14 @@ import TableGame from "../Game/TableGame";
 import FormGame from "../Game/FormGame";
 import Footer from "../Layout/Footer";
 import MovieHome from "../Movie/MovieHome";
-import MovieTable from "../Movie/MovieTable";
-import MovieDetail from "../Movie/MovieDetail";
-import MovieForm from "../Movie/MovieForm";
+
 import Register from "../Auth/Register";
 import Login from "../Auth/Login";
 import { useContext } from "react";
 import { UserContext } from "../Auth/UserContext";
-import { Sidebar, SidebarItem } from "react-responsive-sidebar";
-import SideNavMenu from "../Layout/Sidenav";
-
+import Change from "../Auth/Change";
 import { useHistory } from "react-router-dom";
+import MovieTest from "../Movie/MovieTest";
 
 const Routes = () => {
   const [user] = useContext(UserContext);
@@ -43,11 +40,6 @@ const Routes = () => {
     }
   };
 
-  //addGame
-  const toTableGame = () => {
-    history.push("/game/table");
-  };
-
   return (
     <>
       <Router>
@@ -58,9 +50,12 @@ const Routes = () => {
             <Route exact path="/movie">
               <MovieHome />
             </Route>
-            {/* <Route exact path="/">
-              <Dashboard />
-            </Route> */}
+            <Route exact path="/change-password">
+              <Change />
+            </Route>
+            <Route exact path="/">
+              <HomeGame />
+            </Route>
             <Route exact path="/game">
               <HomeGame />
             </Route>
@@ -76,21 +71,8 @@ const Routes = () => {
             <Route exact path="/game/:id/detail">
               <DetailGame />
             </Route>
-            {/* <Route exact path="/movie/table">
-                <MovieTable />
-              </Route>
-              
-            {/* <Route exact path="/movie/:id/detail">
-                <MovieDetail />
-              </Route>
-              <Route exact path="/movie/:id/edit">
-                <MovieForm />
-              </Route> */}
-            {/* <Route exact path="/sidebar">
-              <Sidebarmenu />
-            </Route> */}
-            <Route exact path="/movie/create">
-              <MovieForm />
+            <Route exact path="/movie/table">
+              <MovieTest />
             </Route>
             <LoginRoute exact path="/register">
               <Register />
