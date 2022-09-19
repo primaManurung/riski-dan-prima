@@ -34,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const MovieTest = () => {
+const MovieTable = () => {
   let history = useHistory();
   const [user] = useContext(UserContext);
   const url = "https://super-bootcamp-backend.sanbersy.com";
@@ -51,9 +51,10 @@ const MovieTest = () => {
             id: x.id,
             name: x.title,
             genre: x.genre,
-            img: x.image_url,
+            image: x.image_url,
             year: x.year,
             description: x.description,
+            duration: x.duration,
             review: x.review,
             rating: x.rating,
           };
@@ -70,20 +71,20 @@ const MovieTest = () => {
 
   //addGame
   const addGame = () => {
-    history.push("/movies/table/create");
+    history.push("/movie/table/create");
   };
 
   //editGame
   const handleEdit = async (event) => {
     let idGame = Number(event.target.value);
-    history.push(`/movies/table/${idGame}/edit`);
+    history.push(`/movie/table/${idGame}/edit`);
   };
 
   //deleteGame
   const handleDelete = (event) => {
     let idGame = parseInt(event.target.value);
     axios
-      .delete(`${url}/api/games/${idGame}`, {
+      .delete(`${url}/api/movies/${idGame}`, {
         headers: { Authorization: "Bearer " + user.token },
       })
       .then(() => {
@@ -130,7 +131,7 @@ const MovieTest = () => {
                   placeholder="Search by Name or Genre...."
                 ></input>
                 <TableContainer component={Paper}>
-                  <Table sx={{ Width: 700 }} aria-label="customized table">
+                  <Table sx={{ maxWidth: 700 }} aria-label="customized table">
                     <TableHead>
                       <TableRow>
                         <StyledTableCell className="tableTable">
@@ -143,16 +144,19 @@ const MovieTest = () => {
                           Genre
                         </StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
-                          Single Player
+                          Description
                         </StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
-                          Multi Player
-                        </StyledTableCell>
-                        <StyledTableCell className="tableTable" align="left">
-                          Platform
+                          Duration
                         </StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           Release
+                        </StyledTableCell>
+                        <StyledTableCell className="tableTable" align="left">
+                          Rating
+                        </StyledTableCell>
+                        <StyledTableCell className="tableTable" align="left">
+                          Review
                         </StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           Action
@@ -161,14 +165,7 @@ const MovieTest = () => {
                     </TableHead>
                     <TableHead>
                       <TableRow>
-                        <StyledTableCell className="tableTable">
-                          <button
-                            className="buttonGames"
-                            onClick={() => sorting("image_url")}
-                          >
-                            Sort
-                          </button>
-                        </StyledTableCell>
+                        <StyledTableCell className="tableTable"></StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
                             className="buttonGames"
@@ -185,18 +182,14 @@ const MovieTest = () => {
                             Sort
                           </button>
                         </StyledTableCell>
+                        <StyledTableCell
+                          className="tableTable"
+                          align="left"
+                        ></StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
                             className="buttonGames"
-                            onClick={() => sorting("description")}
-                          >
-                            Sort
-                          </button>
-                        </StyledTableCell>
-                        <StyledTableCell className="tableTable" align="left">
-                          <button
-                            className="buttonGames"
-                            onClick={() => sorting("rating")}
+                            onClick={() => sorting("duration")}
                           >
                             Sort
                           </button>
@@ -212,7 +205,7 @@ const MovieTest = () => {
                         <StyledTableCell className="tableTable" align="left">
                           <button
                             className="buttonGames"
-                            onClick={() => sorting("review")}
+                            onClick={() => sorting("rating")}
                           >
                             Sort
                           </button>
@@ -221,19 +214,25 @@ const MovieTest = () => {
                           className="tableTable"
                           align="left"
                         ></StyledTableCell>
+                        <StyledTableCell
+                          className="tableTable"
+                          align="left"
+                        ></StyledTableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {game
-                        .filter((asd) =>
-                          asd.name.toLowerCase().includes(search1)
+                        .filter(
+                          (asd) =>
+                            asd.name?.toLowerCase().includes(search1) ||
+                            asd.genre?.toLowerCase().includes(search1)
                         )
                         .map((item, index) => (
                           <StyledTableRow key={index}>
                             <StyledTableCell component="th" scope="row">
                               <img
                                 className="imgTable"
-                                src={item.img}
+                                src={item.image}
                                 alt="Game List"
                               ></img>
                             </StyledTableCell>
@@ -259,13 +258,13 @@ const MovieTest = () => {
                               className="tableCell"
                               align="right"
                             >
-                              {item.year}
+                              {item.duration}
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
                               align="right"
                             >
-                              {item.review}
+                              {item.year}
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
@@ -273,6 +272,13 @@ const MovieTest = () => {
                             >
                               {item.rating}
                             </StyledTableCell>
+                            <StyledTableCell
+                              className="tableCell"
+                              align="right"
+                            >
+                              {item.review}
+                            </StyledTableCell>
+
                             {user ? (
                               <StyledTableCell
                                 className="tableCell"
@@ -313,4 +319,4 @@ const MovieTest = () => {
     </>
   );
 };
-export default MovieTest;
+export default MovieTable;

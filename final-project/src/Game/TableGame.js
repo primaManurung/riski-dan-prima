@@ -13,7 +13,6 @@ import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../Auth/UserContext";
 import SideNavMenu from "../Layout/Sidenav";
-import { red } from "@mui/material/colors";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -130,8 +129,13 @@ const TableGame = () => {
                   onChange={(e) => setSearch1(e.target.value.toLowerCase())}
                   placeholder="Search by Name or Genre...."
                 ></input>
-                <TableContainer component={Paper}>
-                  <Table sx={{ Width: 700 }} aria-label="customized table">
+                <TableContainer component={Paper} className="tableGame">
+                  <Table
+                    sx={{ Width: 700 }}
+                    stickyHeader
+                    aria-label="sticky table"
+                    className="tableGame1"
+                  >
                     <TableHead>
                       <TableRow>
                         <StyledTableCell className="tableTable">
@@ -232,10 +236,14 @@ const TableGame = () => {
                             asd.genre?.toLowerCase().includes(search1)
                         )
                         .map((item, index) => (
-                          <StyledTableRow key={index}>
-                            <StyledTableCell component="th" scope="row">
+                          <StyledTableRow className="tableCol" key={index}>
+                            <StyledTableCell
+                              // className="tableCol"
+                              component="th"
+                              scope="row"
+                            >
                               <img
-                                className="imgTable"
+                                className="imgTable2"
                                 src={item.img}
                                 alt="Game List"
                               ></img>

@@ -1,0 +1,118 @@
+
+<Form onSubmit={handleSubmit}>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Link Image :</Form.Label>
+                  <Form.Control
+                    type="text"
+                    required
+                    className="input"
+                    name="image_url"
+                    value={inputImg}
+                    onChange={handleImgChange}
+                    placeholder="Link Img"
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Name :</Form.Label>
+                  <Form.Control
+                    type="text"
+                    required
+                    className="input"
+                    name="name"
+                    value={inputName}
+                    onChange={handleNameChange}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Genre :</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    className="input"
+                    name="genre"
+                    value={inputGenre}
+                    onChange={handleGenreChange}
+                    placeholder="name@example.com"
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label> SinglePlayer :</Form.Label>
+                  <Form.Label>
+                    {" "}
+                    <span>{inputSingle === 1 ? "Yes" : "No"}</span>{" "}
+                    <input
+                      type="checkbox"
+                      className="input"
+                      name="singlePlayer"
+                      value={inputSingle2}
+                      onChange={() => getClick("Yes")}
+                      // onChange={updateClick}
+                    />
+                    Centang Untuk Yes{" "}
+                  </Form.Label>
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label> Multiplayer :</Form.Label>
+                  <Form.Label>
+                    <span>{inputMulti === 1 ? "Yes" : "No"}</span>{" "}
+                    <input
+                      type="checkbox"
+                      className="input"
+                      name="singlePlayer"
+                      value={inputMulti2}
+                      onClick={() => getClick2("Yes")}
+                      // onChange={updateClick}
+                    />
+                    Centang Untuk Yes
+                  </Form.Label>{" "}
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Platform :</Form.Label>
+                  <Form.Control
+                    required
+                    className="input"
+                    value={inputPlatform}
+                    name="singlePlayer"
+                    onChange={handlePlatformChange}
+                    placeholder="name@example.com"
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Release :</Form.Label>
+                  <Form.Control
+                    required
+                    type="number"
+                    min={2000}
+                    max={2022}
+                    className="input"
+                    value={inputRelease}
+                    name="release"
+                    onChange={handleReleaseChange}
+                    placeholder="name@example.com"
+                  />
+                </Form.Group>
+                <button className="btnTableGame" type="submit">
+                  Submit
+                </button>
+              </Form>

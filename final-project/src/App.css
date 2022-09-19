@@ -17,7 +17,21 @@
   text-align: left;
   border: 0px !important;
 }
+.divInput{
+  width: 200px;
+}
+.input{
+  width: 100%;
+}
 
+.formGame{
+  width: 400px;
+  /* border: 2px solid; */
+ text-align: left;
+  display: flex;
+  color: #05386B;
+  font-weight: 800;
+}
 .MainContainer{
   text-align: center !important;
   background: #5CDB95;
@@ -33,6 +47,19 @@
   min-height: 600px;
   display: flex;
 }
+
+.tableGame{
+  width: 80% !important;
+  margin: auto;
+  text-align: center;
+  max-height: 600px !important;
+  color: #05386B !important;
+}
+.tableGame1{
+  width: 100% !important;
+}
+
+
 .MainContainerUser1{
   text-align: center !important;
   background: #5CDB95;
@@ -47,10 +74,23 @@
   /* flex-wrap: wrap; */
   width: 100%;
 }
+.singleField{
+  color: #05386B ;
+  font-weight: 800;
+}
+.singleField2{
+  background: #05386B;
+  color: #5CDB95 ;
+  width: 20px;
+  font-weight: 800;
+}
+
+
 .inputfieldSingle{
   display: none;
 visibility: hidden;
 }
+
 
 .sideNav{
   background: #5CDB95;
@@ -219,6 +259,20 @@ td{
   border-radius: 50px !important;
   background:#05386B !important;
 }
+.gambar{
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.cardMovieUser {
+  box-shadow: 8px 8px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin: 15px;
+  border-radius: 10px !important;
+  background:#05386B !important;
+}
 
 @media only screen and (max-width: 800px) {
   .card {
@@ -299,6 +353,18 @@ img{
   object-fit: cover;
   border-radius: 45px 45px ;
   opacity: 0.9;
+}
+.imgTable2{
+  width: 50%;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 5px 5px ;
+  opacity: 0.9;
+}
+.tableCol{
+  height: 20px !important;
+  background: #EDF5E1;
+  color: #05386B !important;
 }
 
 .tableCell{
@@ -413,6 +479,15 @@ img{
   width: 95%;
 }
 
+.cardMovieContainer{
+  margin-top: 30px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center !important;
+  width: 95%;
+}
+
 .movieCard {
   padding: 10px;
   box-shadow: 8px 8px 8px 0 rgba(0, 0, 0, 0.2);
@@ -431,6 +506,7 @@ img{
 }
 
 .buttonMovie{
+  margin: 10px;
   width: 100%;
   background: #8EE4AF ;
   border: 0 !important;
@@ -485,3 +561,18 @@ img{
   padding: 10px;
 }
 
+.imageMovie{
+
+  width: 100%;
+  height: 100%;
+  border-radius: 10px ;
+  opacity: 100;
+  border:5px solid #05386B;
+}
+.detailMovieDiv{
+  height: 100%;height: 400px;
+  margin: auto;
+}
+img.gambar{
+  border-radius: 10px 10px 0 0;
+}

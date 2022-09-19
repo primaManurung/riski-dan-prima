@@ -4,8 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import { useContext } from "react";
 import SideNavMenu from "../Layout/Sidenav";
-import Card from "react-bootstrap/Card";
-import Table from "react-bootstrap/Table";
+
 const FormGame = () => {
   let history = useHistory();
   let { id } = useParams();
@@ -175,8 +174,8 @@ const FormGame = () => {
                   onChange={handleMultiChange}
                 ></input>
               </div>
-
-              <Table className="formTable">
+              {/* <form id="my_form"></form> */}
+              {/* <Table className="formTable">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -195,6 +194,7 @@ const FormGame = () => {
                         name="image_url"
                         value={inputImg}
                         onChange={handleImgChange}
+                        form="my_form"
                       ></input>
                     </td>
                   </tr>
@@ -207,6 +207,7 @@ const FormGame = () => {
                         className="input"
                         name="name"
                         value={inputName}
+                        form="my_form"
                         onChange={handleNameChange}
                       ></input>
                     </td>
@@ -221,6 +222,7 @@ const FormGame = () => {
                         className="input"
                         name="genre"
                         value={inputGenre}
+                        form="my_form"
                         onChange={handleGenreChange}
                       ></input>
                     </td>
@@ -234,6 +236,7 @@ const FormGame = () => {
                         className="input"
                         name="singlePlayer"
                         value={inputSingle2}
+                        form="my_form"
                         onChange={() => getClick("Yes")}
                         // onChange={updateClick}
                       />
@@ -249,6 +252,7 @@ const FormGame = () => {
                         className="input"
                         name="singlePlayer"
                         value={inputMulti2}
+                        form="my_form"
                         onClick={() => getClick2("Yes")}
                         // onChange={updateClick}
                       />
@@ -262,6 +266,7 @@ const FormGame = () => {
                         required
                         className="input"
                         value={inputPlatform}
+                        form="my_form"
                         name="singlePlayer"
                         onChange={handlePlatformChange}
                       ></input>
@@ -272,25 +277,132 @@ const FormGame = () => {
                     <td>
                       <input
                         required
+                        form="my_form"
                         type="number"
                         min={2000}
-                        max={2021}
+                        max={2022}
                         className="input"
                         value={inputRelease}
-                        name="singlePlayer"
+                        name="release"
                         onChange={handleReleaseChange}
-                      ></input>
+                      />
                     </td>
                   </tr>
                 </tbody>
-              </Table>
-              <button
-                className="btnTableGame"
-                type="submit"
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>
+              </Table> */}
+
+              <>
+                <form onSubmit={handleSubmit}>
+                  <div className="formGame ">
+                    <div className="divInput">
+                      <label for="username">Link Image :</label>
+                    </div>
+                    <div className="divInput">
+                      <input
+                        type="text"
+                        className="input"
+                        name="image_url"
+                        value={inputImg}
+                        onChange={handleImgChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="formGame ">
+                    <div className="divInput">
+                      <label for="username">Name :</label>
+                    </div>
+                    <div className="divInput">
+                      <input
+                        type="text"
+                        className="input"
+                        name="name"
+                        value={inputName}
+                        onChange={handleNameChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="formGame ">
+                    <div className="divInput">
+                      <label for="username">Genre :</label>
+                    </div>
+                    <div className="divInput">
+                      <input
+                        type="text"
+                        className="input"
+                        name="genre"
+                        value={inputGenre}
+                        onChange={handleGenreChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="formGame ">
+                    <div className="divInput">
+                      <label for="username">Platform :</label>
+                    </div>
+                    <div className="divInput">
+                      <input
+                        className="input"
+                        value={inputPlatform}
+                        name="singlePlayer"
+                        onChange={handlePlatformChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="formGame ">
+                    <div className="divInput">
+                      <label for="username">Release :</label>
+                    </div>
+                    <div className="divInput">
+                      <input
+                        type="number"
+                        min={2000}
+                        max={2022}
+                        className="input"
+                        value={inputRelease}
+                        name="release"
+                        onChange={handleReleaseChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="singleField">SinglePlayer :</label>
+                    <span className="singleField2">
+                      {inputSingle === 1 ? "Yes" : "No"}
+                    </span>{" "}
+                    <input
+                      type="checkbox"
+                      className="input"
+                      name="singlePlayer"
+                      value={inputSingle2}
+                      onChange={() => getClick("Yes")}
+                      // onChange={updateClick}
+                    />
+                    Ganti
+                  </div>
+                  <div>
+                    <label className="singleField">Multiplayer :</label>
+                    <span className="singleField2">
+                      {inputMulti === 1 ? "Yes" : "No"}
+                    </span>{" "}
+                    <input
+                      type="checkbox"
+                      className="input"
+                      name="singlePlayer"
+                      value={inputMulti2}
+                      onClick={() => getClick2("Yes")}
+                      // onChange={updateClick}
+                    />
+                    Ganti
+                  </div>
+                  <input className="btnTableGame" type="submit" />
+                </form>
+              </>
             </div>
           </div>
         </div>

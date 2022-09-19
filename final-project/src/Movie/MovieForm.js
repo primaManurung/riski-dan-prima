@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import { useContext } from "react";
+import SideNavMenu from "../Layout/Sidenav";
+import Table from "react-bootstrap/Table";
 
 const MovieForm = () => {
   let history = useHistory();
@@ -15,21 +17,23 @@ const MovieForm = () => {
   const [duration, setDuration] = useState("");
   const [rating, setRating] = useState("");
   const [release, setRelease] = useState("");
+  const [review,setReview] = useState("");
   const [currentId, setCurrentId] = useState(null);
   const [user] = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`${url}/api/movies/${id}`);
-      const currentGame = result.data;
+      const currentMovie = result.data;
       setCurrentId(id);
-      setImage(currentGame.image_url);
-      setInputName(currentGame.name);
-      setGenre(currentGame.genre);
-      setDescription(currentGame.singlePlayer);
-      setDuration(currentGame.multiplayer);
-      setRating(currentGame.platform);
-      setRelease(currentGame.release);
+      setImage(currentMovie.image_url);
+      setName(currentMovie.title);
+      setGenre(currentMovie.genre);
+      setDescription(currentMovie.description);
+      setDuration(currentMovie.duration);
+      setRating(currentMovie.rating);
+      setRelease(currentMovie.year);
+      setReview(currentMovie.review);
     };
     if (id) {
       fetchData();
@@ -37,35 +41,40 @@ const MovieForm = () => {
   }, [id]);
 
   //handleChange
-  const handleImgChange = (event) => {
+  const handleImage = (event) => {
     let inputValue = event.target.value;
     setImage(inputValue);
   };
-  const handleNameChange = (event) => {
+  const handleTitle = (event) => {
     let inputValue = event.target.value;
-    setInputName(inputValue);
+    setName(inputValue);
   };
-  const handleGenreChange = (event) => {
+  const handleGenre = (event) => {
     let inputValue = event.target.value;
     setGenre(inputValue);
   };
-  const handleSingleChange = (event) => {
+  const handleDescription = (event) => {
     let inputValue = event.target.value;
     setDescription(inputValue);
   };
 
-  const handleMultiChange = (event) => {
+  const handleDuration = (event) => {
     let inputValue = event.target.value;
     setDuration(inputValue);
   };
-  const handlePlatformChange = (event) => {
+  const handleRating = (event) => {
     let inputValue = event.target.value;
     setRating(inputValue);
   };
-  const handleReleaseChange = (event) => {
+  const handleRelease = (event) => {
     let inputValue = event.target.value;
     setRelease(inputValue);
   };
+  const handleReview = (event) => {
+    let inputValue = event.target.value;
+    setReview(inputValue);
+  };
+
 
   //submit
   const handleSubmit = (event) => {
@@ -73,33 +82,35 @@ const MovieForm = () => {
     if (currentId === null) {
       axios
         .post(
-          `${url}/api/games`,
+          `${url}/api/movies`,
           {
             image_url: image,
-            name: name,
+            title: name,
             genre: genre,
-            singlePlayer: description,
-            multiplayer: duration,
-            platform: rating,
-            release: release,
+            description: description,
+            duration: duration,
+            rating: rating,
+            year: release,
+            review: review
           },
           { headers: { Authorization: "Bearer " + user.token } }
         )
         .then((res) => {
-          history.push("/game/table");
+          history.push("/movie/table");
         });
     } else {
       axios
         .put(
-          `${url}/api/games/${currentId}`,
+          `${url}/api/movies/${currentId}`,
           {
             image_url: image,
-            name: name,
+            title: name,
             genre: genre,
-            singlePlayer: description,
-            multiplayer: duration,
-            platform: rating,
-            release: release,
+            description: description,
+            duration: duration,
+            rating: rating,
+            year: release,
+            review: review
           },
           { headers: { Authorization: "Bearer " + user.token } }
         )
@@ -109,105 +120,146 @@ const MovieForm = () => {
     }
     setCurrentId(null);
     setImage("");
-    setInputName("");
+    setName("");
     setGenre("");
-    setDescription();
-    setDuration();
+    setDescription("");
+    setDuration("");
     setRating("");
     setRelease("");
+    setReview("");
   };
 
   return (
     <>
-      <div className="MainContainer">
-        <div className="container">
-          <h1>Form Game </h1>
-          <div className="wrapper">
-            <form className="form" onSubmit={handleSubmit}>
-              <div className="inputfield">
-                <label>Img : </label>
-                <input
-                  type="text"
-                  required
-                  className="input"
-                  name="image_url"
-                  value={image}
-                  onChange={handleImgChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <label>Name : </label>
-                <input
-                  type="text"
-                  required
-                  className="input"
-                  name="name"
-                  value={name}
-                  onChange={handleNameChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <label>Genre</label>
-                <input
-                  required
-                  type="text"
-                  className="input"
-                  name="genre"
-                  value={genre}
-                  onChange={handleGenreChange}
-                ></input>
-              </div>{" "}
-              <div className="inputfield">
-                <label>Single Player </label>
-                <input
-                  required
-                  className="input"
-                  value={description}
-                  name="singlePlayer"
-                  type="number"
-                  onChange={handleSingleChange}
-                ></input>
-              </div>{" "}
-              <div className="inputfield">
-                <label>Multi Player </label>
-                <input
-                  required
-                  className="input"
-                  value={duration}
-                  type="number"
-                  name="multiplayer"
-                  onChange={handleMultiChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <label>Platform </label>
-                <input
-                  required
-                  className="input"
-                  value={rating}
-                  name="singlePlayer"
-                  onChange={handlePlatformChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <label>Release</label>
-                <input
-                  required
-                  className="input"
-                  value={release}
-                  name="singlePlayer"
-                  onChange={handleReleaseChange}
-                ></input>
-              </div>
-              <div className="inputfield">
-                <button className="btn" type="submit">
-                  Submit
-                </button>
-              </div>
-            </form>
+      <div className={user ? `MainContainerUser` : `MainContainer`}>
+        <div className={user ? `SideContainerUser` : `SideContainer`}>
+          {user ? <SideNavMenu /> : <></>}
+          <div className="textCenter">
+            <div className="gamesTittle">Form Game</div>
+            
+              <Table className="formTable">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Form Game</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Link Image :</td>
+                    <td>
+                      {" "}
+                      <input
+                        type="text"
+                        required
+                        className="input"
+                        name="image_url"
+                        value={image}
+                        onChange={handleImage}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Name : </td>
+                    <td>
+                      <input
+                        type="text"
+                        required
+                        className="input"
+                        name="title"
+                        value={name}
+                        onChange={handleTitle}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Genre : </td>
+                    <td>
+                      {" "}
+                      <input
+                        required
+                        type="text"
+                        className="input"
+                        name="genre"
+                        value={genre}
+                        onChange={handleGenre}
+                      ></input>
+                    </td>
+                  </tr>
+                 
+                  <tr>
+                    <td>Description :</td>
+                    <td>
+                      <input
+                        required
+                        className="input"
+                        value={description}
+                        name="description"
+                        onChange={handleDescription}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Duration :</td>
+                    <td>
+                      <input
+                        required
+                        className="input"
+                        value={duration}
+                        name="duration"
+                        onChange={handleDuration}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Release :</td>
+                    <td>
+                      <input
+                        required
+                        className="input"
+                        value={release}
+                        name="year"
+                        onChange={handleRelease}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Release :</td>
+                    <td>
+                      <input
+                        required
+                        className="input"
+                        value={rating}
+                        name="rating"
+                        onChange={handleRating}
+                      ></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Release :</td>
+                    <td>
+                      <input
+                        required
+                        className="input"
+                        value={review}
+                        name="review"
+                        onChange={handleReview}
+                      ></input>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <button
+                className="btnTableGame"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      
     </>
   );
 };
