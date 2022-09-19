@@ -8,80 +8,54 @@
 // import TableRow from "@mui/material/TableRow";
 // import Paper from "@mui/material/Paper";
 // import { useState, useEffect } from "react";
-// import { Route, useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 // import axios from "axios";
-// import Router from "router";
-// import MovieForm from "./MovieForm";
+// // import Router from "router";
+// // import MovieForm from "./MovieForm";
 
-// const StyledTableCell = styled(TableCell)(({ theme }) => ({
-//     [`&.${tableCellClasses.head}`]: {
-//       backgroundColor: theme.palette.common.black,
-//       color: theme.palette.common.white,
-//     },
-//     [`&.${tableCellClasses.body}`]: {
-//       fontSize: 14,
-//     },
-//   }));
+// // const StyledTableCell = styled(TableCell)(({ theme }) => ({
+// //     [`&.${tableCellClasses.head}`]: {
+// //       backgroundColor: theme.palette.common.black,
+// //       color: theme.palette.common.white,
+// //     },
+// //     [`&.${tableCellClasses.body}`]: {
+// //       fontSize: 14,
+// //     },
+// //   }));
 
-//   const StyledTableRow = styled(TableRow)(({ theme }) => ({
-//     "&:nth-of-type(odd)": {
-//       backgroundColor: theme.palette.action.hover,
-//     },
-//     // hide last border
-//     "&:last-child td, &:last-child th": {
-//       border: 0,
-//     },
-//   }));
+// //   const StyledTableRow = styled(TableRow)(({ theme }) => ({
+// //     "&:nth-of-type(odd)": {
+// //       backgroundColor: theme.palette.action.hover,
+// //     },
+// //     // hide last border
+// //     "&:last-child td, &:last-child th": {
+// //       border: 0,
+// //     },
+// //   }));
 
-//   const MovieTable = () => {
-//     let history = useHistory();
-//     const url = "https://super-bootcamp-backend.sanbersy.com";
-//     const [movie, setMovie] = useState([]);
-//     const [fetchTrigger, setFetchTrigger] = useState(true);
+//     const handleEdit = async (event)=>{
+//       let idScore = Number(event.target.value)
 
-//     useEffect(() => {
-//       const fetchData = async () => {
-//         const result = await axios.get(`${url}/api/movies`);
-//         setMovie(
-//           result.data.map((x) => {
-//             return {
-//               id: x.id,
-//               judul: x.title,
-//               description: x.description,
-//               img: x.image_url,
-//               rating: x.rating,
-//               duration: x.duration,
-//               genre: x.genre,
-//               release: x.year,
-//             };
-//           })
-//         );
-//         setFetchTrigger(false);
-//       };
-//       if (fetchTrigger) {
-//         fetchData();
-//       }
-//     }, [fetchTrigger]);
+//       history.push(`/movie/${idScore}/edit`)
 
-//   //   const handleDelete = (event)=>{
-//   //     let index = Number(event.target.value)
-//   //     if (currentIndex !== -1){
-//   //         //clear form
-//   //         // setCurrentIndex(-1)
-//   //         // setShowForm(false)
-//   //     }
+//   }
 
-//   //     // filter return data without equal value
-//   //     let newbuah = buah.filter((item, itemIndex)=>{
-//   //         return index !== itemIndex
-//   //     })
+//   const addNewMovie = ()=>{
+//     history.push("/movie/create")
+// }
 
-//   //     setBuah(newbuah)
-//   // }
+//     const handleDelete = (event)=>{
+//       let idMovie = parseInt(event.target.value)
+//       axios.delete(`${url}/api/movies/${idMovie}`).then(()=>{
+//           setFetchTrigger(true)
+//       }).catch((err)=>{
+//           console.log(err)
+//       })
+//   }
 
 //     return (
-//       <Router>
 //       <div className="tableContainer">
+//         <button className="addMovie"onClick={addNewMovie}>add Movie Collection</button>
 //         <TableContainer component={Paper}>
 //           <Table aria-label="customized table">
 //             <TableHead>
@@ -122,10 +96,10 @@
 //                   </StyledTableCell>
 //                   <StyledTableCell className="tableCell" align="right">
 //                     <span>
-//                       <button className="tombolEditTableMovie">Edit</button>
+//                       <button className="tombolEditTableMovie"onClick={handleEdit}>Edit</button>
 //                     </span>
 //                     <span>
-//                       <button className="tombolTableMovie" >Delete</button>
+//                       <button className="tombolTableMovie"onClick={handleDelete}>Delete</button>
 //                     </span>
 //                   </StyledTableCell>
 //                 </StyledTableRow>
@@ -133,13 +107,8 @@
 //             </TableBody>
 //           </Table>
 //         </TableContainer>
-//         <switch>
-//           <Route exact path={"/MovieForm"}>
-//             <MovieForm/>
-//           </Route>
-//         </switch>
+
 //       </div>
-//       </Router>
 //     );
 //   };
 //   export default MovieTable;
