@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import SideNavMenu from "../Layout/Sidenav";
 import Card from "react-bootstrap/Card";
+import "../App.css";
 
 const MovieDetail = () => {
   let history = useHistory();
@@ -30,7 +31,7 @@ const MovieDetail = () => {
       const result = await axios.get(`${url}/api/movies/${id}`);
       const currentId = result.data;
       setCurrentIndex(id)
-      setName(currentId.name)
+      setName(currentId.Title)
       setDescription(currentId.description)
       setGenre(currentId.genre)
       setDuration(currentId.duration)
@@ -54,10 +55,10 @@ const MovieDetail = () => {
             <Container className="detailContainer">
               <Row>
                 <Col>
-                  <div className="detailDiv">
+                  <div className="detailMovieDiv">
                     <img
-                      alt="Logo game "
-                      className="detailImg"
+                      alt="Logo game"
+                      className="imageMovie"
                       src={image}
                     ></img>
                   </div>
@@ -78,11 +79,11 @@ const MovieDetail = () => {
                         Duration : {duration} menit
                       </Card.Title>
                       <Card.Title className="detailMargin">
-                        Rating : {rating} / 10
-                      </Card.Title>
-                      <Card.Title className="detailMargin">
                         Release : {release}
                       </Card.Title>
+                      <Card.Title className="detailMargin">
+                        Rating : {rating} / 10
+                      </Card.Title>                      
                       <Card.Title className="detailMargin">
                         Review : {review}
                       </Card.Title>

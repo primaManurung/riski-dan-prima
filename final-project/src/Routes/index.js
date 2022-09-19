@@ -19,7 +19,9 @@ import { useContext } from "react";
 import { UserContext } from "../Auth/UserContext";
 import Change from "../Auth/Change";
 import { useHistory } from "react-router-dom";
-import MovieTest from "../Movie/MovieTest";
+import MovieTable from "../Movie/MovieTable";
+import MovieForm from "../Movie/MovieForm";
+import MovieDetail from "../Movie/MovieDetail";
 
 const Routes = () => {
   const [user] = useContext(UserContext);
@@ -65,14 +67,23 @@ const Routes = () => {
             <PrivateRoute exact path="/game/table/create">
               <FormGame />
             </PrivateRoute>
+            <PrivateRoute exact path="/movie/table/create">
+              <MovieForm />
+            </PrivateRoute>
             <PrivateRoute exact path="/game/table/:id/edit">
               <FormGame />
+            </PrivateRoute>
+            <PrivateRoute exact path="/movie/table/:id/edit">
+              <MovieForm />
             </PrivateRoute>
             <Route exact path="/game/:id/detail">
               <DetailGame />
             </Route>
+            <Route exact path="/movie/:id/detail">
+              <MovieDetail />
+            </Route>
             <Route exact path="/movie/table">
-              <MovieTest />
+              <MovieTable />
             </Route>
             <LoginRoute exact path="/register">
               <Register />

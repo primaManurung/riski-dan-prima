@@ -16,7 +16,7 @@ function MovieHome() {
       const result = await axios.get(`${url}/api/movies`);
       setMovie(
         result.data.map((x) => {
-          return { id: x.id, name: x.title, genre: x.genre ,description: x.description, duration: x.duration ,rating: x.rating, review: x.review,img: x.image_url };
+          return { id: x.id, title: x.title, genre: x.genre ,description: x.description, duration: x.duration , release: x.year, rating: x.rating, review: x.review,img: x.image_url };
         })
       );
       setFetchTrigger(false);
@@ -39,18 +39,19 @@ function MovieHome() {
           {user ? <SideNavMenu /> : <></>}
           <div>
             <div className="gamesTittle">
-              Play <span>The Best</span> Game
+              Movie Collection
             </div>
-            <div className={user ? `CardContainerUser` : `cardContainer`}>
+            <div className={user ? `CardContainerUser` : `cardMovieCont`}>
               {movie.map((item, index) => {
                 return (
-                  <div className={user ? ` cardUser` : `card`} key={index}>
-                    <img src={item.img} alt="Avatar" />
+                  <div className={user ? ` cardMovieUser` : `movieCard`} key={index}>
+                    <img className="gambar" src={item.img} alt="Avatar" />
                     <div className="cardMovieContainer">
-                      <h6>
-                        <b>{item.name}</b>
-                      </h6>
+                     
+                      {/* <p>{item.title}</p> */}
+                      {/* <p>{item.release}</p> */}
                       <p>{item.genre}</p>
+                      
                       <button
                         className="buttonMovie"
                         onClick={handleDetail}

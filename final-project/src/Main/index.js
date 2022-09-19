@@ -6,10 +6,9 @@ import DetailGame from "./DetailGame";
 import TableGame from "./TableGame";
 import Footer from "../Layout/Footer"
 import MovieHome from "../Movie/MovieHome";
-import MovieTable from "../Movie/MovieTable";
 import MovieDetail from "../Movie/MovieDetail";
-import MovieForm from "../Movie/MovieForm";
-import MovieTest from "../Movie/MovieTest";
+// import MovieForm from "../Movie/MovieForm";
+import MovieTable from "../Movie/MovieTable";
 
 
 
@@ -29,7 +28,7 @@ const Routes = () => {
             <TableGame />
           </Route>
           <Route exact path="/movie/table">
-            <MovieTest />
+            <MovieTable />
           </Route>
           <Route exact path="/game/:id/detail">
             <DetailGame/>
@@ -37,12 +36,12 @@ const Routes = () => {
           <Route exact path="/movie/:id/detail">
             <MovieDetail/>
           </Route>
-          <Route exact path="/movie/:id/edit">
+          {/* <Route exact path="/movie/:id/edit">
             <MovieForm/>
           </Route>
           <Route exact path="/movie/create">
             <MovieForm/>
-          </Route>
+          </Route> */}
         </Switch>
         <Footer/>
       </>
