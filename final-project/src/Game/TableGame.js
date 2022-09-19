@@ -39,25 +39,24 @@ const TableGame = () => {
   let history = useHistory();
   const [user] = useContext(UserContext);
   const url = "https://super-bootcamp-backend.sanbersy.com";
-  const [movie, setMovie] = useState([]);
+  const [game, setGame] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(true);
   const [search1, setSearch1] = useState("");
-  // const [sortedField, setSortedField] = useState("ASC");
+  const [sortedField, setSortedField] = useState("ASC");
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`${url}/api/movies`);
-      setMovie(
+      const result = await axios.get(`${url}/api/games`);
+      setGame(
         result.data.map((x) => {
           return {
             id: x.id,
-            title: x.title,
+            name: x.name,
             genre: x.genre,
             img: x.image_url,
-            description: x.description,
-            duration: x.duration,
-            rating: x.rating,
-            year: x.year,
-            review: x.review,
+            single: x.singlePlayer,
+            multi: x.multiplayer,
+            platform: x.platform,
+            release: x.release,
           };
         })
       );
@@ -72,20 +71,20 @@ const TableGame = () => {
 
   //addGame
   const addGame = () => {
-    history.push("/movie/table/create");
+    history.push("/game/table/create");
   };
 
   //editGame
   const handleEdit = async (event) => {
-    let idMovie = Number(event.target.value);
-    history.push(`/movie/table/${idMovie}/edit`);
+    let idGame = Number(event.target.value);
+    history.push(`/game/table/${idGame}/edit`);
   };
 
   //deleteGame
   const handleDelete = (event) => {
-    let idMovie = parseInt(event.target.value);
+    let idGame = parseInt(event.target.value);
     axios
-      .delete(`${url}/api/movies/${idMovie}`, {
+      .delete(`${url}/api/games/${idGame}`, {
         headers: { Authorization: "Bearer " + user.token },
       })
       .then(() => {
@@ -96,18 +95,18 @@ const TableGame = () => {
       });
   };
 
-  // const sorting = (col) => {
-  //   if (sortedField === "ASC") {
-  //     const sorted = [...game].sort((a, b) => (a[col] > b[col] ? 1 : -1));
-  //     setSortedField("DSC");
-  //     setGame(sorted);
-  //   }
-  //   if (sortedField === "DSC") {
-  //     const sorted = [...game].sort((a, b) => (a[col] < b[col] ? 1 : -1));
-  //     setSortedField("ASC");
-  //     setGame(sorted);
-  //   }
-  // };
+  const sorting = (col) => {
+    if (sortedField === "ASC") {
+      const sorted = [...game].sort((a, b) => (a[col] > b[col] ? 1 : -1));
+      setSortedField("DSC");
+      setGame(sorted);
+    }
+    if (sortedField === "DSC") {
+      const sorted = [...game].sort((a, b) => (a[col] < b[col] ? 1 : -1));
+      setSortedField("ASC");
+      setGame(sorted);
+    }
+  };
 
   return (
     <>
@@ -160,7 +159,7 @@ const TableGame = () => {
                         </StyledTableCell>
                       </TableRow>
                     </TableHead>
-                    {/* <TableHead>
+                    <TableHead>
                       <TableRow>
                         <StyledTableCell className="tableTable">
                           <button
@@ -223,12 +222,12 @@ const TableGame = () => {
                           align="left"
                         ></StyledTableCell>
                       </TableRow>
-                    </TableHead> */}
+                    </TableHead>
                     <TableBody>
-                      {movie
+                      {game
                         .filter(
                           (asd) =>
-                            asd.title.toLowerCase().includes(search1) ||
+                            asd.name.toLowerCase().includes(search1) ||
                             asd.genre.toLowerCase().includes(search1)
                         )
                         .map((item, index) => (
@@ -244,7 +243,7 @@ const TableGame = () => {
                               className="tableCell"
                               align="right"
                             >
-                              {item.title}
+                              {item.name}
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
@@ -256,25 +255,25 @@ const TableGame = () => {
                               className="tableCell"
                               align="right"
                             >
-                              {item.description}
+                              {item.single === 1 ? "Ya" : "Tidak"}
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
                               align="right"
                             >
-                              {item.rating}
+                              {item.multi === 1 ? "Ya" : "Tidak"}
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
                               align="right"
                             >
-                              {item.year}
+                              {item.platform}
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
                               align="right"
                             >
-                              {item.review}
+                              {item.release}
                             </StyledTableCell>
                             {user ? (
                               <StyledTableCell

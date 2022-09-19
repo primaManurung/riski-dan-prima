@@ -1,14 +1,16 @@
 import "./App.css";
-import Routes from "./Main";
+import React from "react";
+import Routes from "./Routes";
+import { UserProvider } from "./Auth/UserContext";
 
 function App() {
   return (
-    <div className="App">
-      <Routes />
-    </div>
-    
+    <>
+      <UserProvider>
+        <Routes />
+      </UserProvider>
+    </>
   );
 }
 
 export default App;
-

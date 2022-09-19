@@ -1,52 +1,51 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import "../App.css";
+import { useHistory, useParams } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 import { useContext } from "react";
 import { UserContext } from "../Auth/UserContext";
+import SideNavMenu from "../Layout/Sidenav";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import SideNavMenu from "../Layout/Sidenav";
-import Card from "react-bootstrap/Card";
 
-const MovieDetail = () => {
+const ScoreForm = () => {
   let history = useHistory();
   let { id } = useParams();
   const url = "https://super-bootcamp-backend.sanbersy.com";
+  const [inputName, setInputName] = useState("");
+  const [inputGenre, setInputGenre] = useState("");
+  const [inputImg, setInputImg] = useState("");
+  const [inputSingle, setInputSingle] = useState("");
+  const [inputMulti, setInputMulti] = useState("");
+  const [inputRelease, setInputRelease] = useState("");
+  const [inputPlatform, setInputPlatform] = useState("");
+  const [currentId, setCurrentId] = useState(null);
   const [user, setUser] = useContext(UserContext);
-  const [name, setName] = useState("");
-  const [genre, setGenre] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [duration, setDuration] = useState("");
-  const [release, setRelease] = useState("");
-  const [rating, setRating] = useState("");
-  const [review, setReview] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`${url}/api/movies/${id}`);
-      const currentId = result.data;
-      setCurrentIndex(id)
-      setName(currentId.name)
-      setDescription(currentId.description)
-      setGenre(currentId.genre)
-      setDuration(currentId.duration)
-      setRelease(currentId.year)
-      setRating(currentId.rating)
-      setReview(currentId.review)
-      setImage(currentId.image_url)
+      const result = await axios.get(`${url}/api/games/${id}`);
+      const currentScore = result.data;
+      setCurrentId(id);
+      setInputName(currentScore.name);
+      setInputGenre(currentScore.genre);
+      setInputImg(currentScore.image_url);
+      setInputSingle(currentScore.singlePlayer);
+      setInputMulti(currentScore.multiplayer);
+      setInputRelease(currentScore.platform);
+      setInputPlatform(currentScore.release);
+    };
+    if (id) {
+      fetchData();
     }
-    if(id){
-      fetchData()
-    }
-  },[id])
+  }, [id]);
 
-  return(
+  return (
     <>
-          <div className={user ? `MainContainerUser` : `MainContainer`}>
+      <div className={user ? `MainContainerUser` : `MainContainer`}>
         <div className={user ? `SideContainerUser` : `SideContainer`}>
           {user ? <SideNavMenu /> : <></>}
           <div className="detailDivMargin">
@@ -58,7 +57,7 @@ const MovieDetail = () => {
                     <img
                       alt="Logo game "
                       className="detailImg"
-                      src={image}
+                      src={inputImg}
                     ></img>
                   </div>
                 </Col>
@@ -66,25 +65,22 @@ const MovieDetail = () => {
                   <div className="detailDiv">
                     <Card.Body>
                       <Card.Title className="detailMargin">
-                        Name : {name}
+                        Name : {inputName}
                       </Card.Title>
                       <Card.Title className="detailMargin">
-                        Genre : {genre}
+                        Genre : {inputGenre}
                       </Card.Title>
                       <Card.Title className="detailMargin">
-                        Description : {description}
+                        Platform : {inputPlatform}
                       </Card.Title>
                       <Card.Title className="detailMargin">
-                        Duration : {duration} menit
+                        Singleplayer : {inputSingle === 1 ? "Yes" : "No"}
                       </Card.Title>
                       <Card.Title className="detailMargin">
-                        Rating : {rating} / 10
+                        Multiplayer : {inputMulti === 1 ? "Yes" : "No"}
                       </Card.Title>
                       <Card.Title className="detailMargin">
-                        Release : {release}
-                      </Card.Title>
-                      <Card.Title className="detailMargin">
-                        Review : {review}
+                        Release : {inputRelease}
                       </Card.Title>
                     </Card.Body>
                   </div>
@@ -95,7 +91,6 @@ const MovieDetail = () => {
         </div>
       </div>
     </>
-  )
-
+  );
 };
-export default MovieDetail;
+export default ScoreForm;

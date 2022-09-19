@@ -1,22 +1,23 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import SideNavMenu from "../Layout/Sidenav";
+import { useContext } from "react";
 import { UserContext } from "../Auth/UserContext";
+import SideNavMenu from "../Layout/Sidenav";
 
-function MovieHome() {
+function HomeGame() {
   let history = useHistory();
   const url = "https://super-bootcamp-backend.sanbersy.com";
-  const [movie, setMovie] = useState([]);
+  const [game, setGame] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(true);
-  const [user, setuser] = useContext(UserContext)
+  const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`${url}/api/movies`);
-      setMovie(
+      const result = await axios.get(`${url}/api/games`);
+      setGame(
         result.data.map((x) => {
-          return { id: x.id, name: x.title, genre: x.genre ,description: x.description, duration: x.duration ,rating: x.rating, review: x.review,img: x.image_url };
+          return { id: x.id, name: x.name, genre: x.genre, img: x.image_url };
         })
       );
       setFetchTrigger(false);
@@ -27,8 +28,8 @@ function MovieHome() {
   }, [fetchTrigger]);
 
   const handleDetail = async (event) => {
-    let idMovie = Number(event.target.value);
-    history.push(`/movie/${idMovie}/detail`);
+    let idGame = Number(event.target.value);
+    history.push(`/game/${idGame}/detail`);
   };
 
   return (
@@ -42,21 +43,21 @@ function MovieHome() {
               Play <span>The Best</span> Game
             </div>
             <div className={user ? `CardContainerUser` : `cardContainer`}>
-              {movie.map((item, index) => {
+              {game.map((item, index) => {
                 return (
                   <div className={user ? ` cardUser` : `card`} key={index}>
                     <img src={item.img} alt="Avatar" />
-                    <div className="cardMovieContainer">
+                    <div className="containerCard">
                       <h6>
                         <b>{item.name}</b>
                       </h6>
                       <p>{item.genre}</p>
                       <button
-                        className="buttonMovie"
+                        className="buttonGames"
                         onClick={handleDetail}
                         value={item.id}
                       >
-                        Movie Detail
+                        Detail Game
                       </button>
                     </div>
                   </div>
@@ -70,4 +71,4 @@ function MovieHome() {
   );
 }
 
-export default MovieHome;
+export default HomeGame;

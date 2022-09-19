@@ -4,32 +4,32 @@ import { useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import { useContext } from "react";
 
-const MovieForm = () => {
+const FormGame = () => {
   let history = useHistory();
   let { id } = useParams();
   const url = "https://super-bootcamp-backend.sanbersy.com";
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [genre, setGenre] = useState("");
-  const [description, setDescription] = useState("");
-  const [duration, setDuration] = useState("");
-  const [rating, setRating] = useState("");
-  const [release, setRelease] = useState("");
+  const [inputImg, setInputImg] = useState("");
+  const [inputName, setInputName] = useState("");
+  const [inputGenre, setInputGenre] = useState("");
+  const [inputSingle, setInputSingle] = useState();
+  const [inputMulti, setInputMulti] = useState();
+  const [inputPlatform, setInputPlatform] = useState("");
+  const [inputRelease, setInputRelease] = useState("");
   const [currentId, setCurrentId] = useState(null);
   const [user] = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`${url}/api/movies/${id}`);
+      const result = await axios.get(`${url}/api/games/${id}`);
       const currentGame = result.data;
       setCurrentId(id);
-      setImage(currentGame.image_url);
+      setInputImg(currentGame.image_url);
       setInputName(currentGame.name);
-      setGenre(currentGame.genre);
-      setDescription(currentGame.singlePlayer);
-      setDuration(currentGame.multiplayer);
-      setRating(currentGame.platform);
-      setRelease(currentGame.release);
+      setInputGenre(currentGame.genre);
+      setInputSingle(currentGame.singlePlayer);
+      setInputMulti(currentGame.multiplayer);
+      setInputPlatform(currentGame.platform);
+      setInputRelease(currentGame.release);
     };
     if (id) {
       fetchData();
@@ -39,7 +39,7 @@ const MovieForm = () => {
   //handleChange
   const handleImgChange = (event) => {
     let inputValue = event.target.value;
-    setImage(inputValue);
+    setInputImg(inputValue);
   };
   const handleNameChange = (event) => {
     let inputValue = event.target.value;
@@ -47,24 +47,24 @@ const MovieForm = () => {
   };
   const handleGenreChange = (event) => {
     let inputValue = event.target.value;
-    setGenre(inputValue);
+    setInputGenre(inputValue);
   };
   const handleSingleChange = (event) => {
     let inputValue = event.target.value;
-    setDescription(inputValue);
+    setInputSingle(inputValue);
   };
 
   const handleMultiChange = (event) => {
     let inputValue = event.target.value;
-    setDuration(inputValue);
+    setInputMulti(inputValue);
   };
   const handlePlatformChange = (event) => {
     let inputValue = event.target.value;
-    setRating(inputValue);
+    setInputPlatform(inputValue);
   };
   const handleReleaseChange = (event) => {
     let inputValue = event.target.value;
-    setRelease(inputValue);
+    setInputRelease(inputValue);
   };
 
   //submit
@@ -75,13 +75,13 @@ const MovieForm = () => {
         .post(
           `${url}/api/games`,
           {
-            image_url: image,
-            name: name,
-            genre: genre,
-            singlePlayer: description,
-            multiplayer: duration,
-            platform: rating,
-            release: release,
+            image_url: inputImg,
+            name: inputName,
+            genre: inputGenre,
+            singlePlayer: inputSingle,
+            multiplayer: inputMulti,
+            platform: inputPlatform,
+            release: inputRelease,
           },
           { headers: { Authorization: "Bearer " + user.token } }
         )
@@ -93,28 +93,28 @@ const MovieForm = () => {
         .put(
           `${url}/api/games/${currentId}`,
           {
-            image_url: image,
-            name: name,
-            genre: genre,
-            singlePlayer: description,
-            multiplayer: duration,
-            platform: rating,
-            release: release,
+            image_url: inputImg,
+            name: inputName,
+            genre: inputGenre,
+            singlePlayer: inputSingle,
+            multiplayer: inputMulti,
+            platform: inputPlatform,
+            release: inputRelease,
           },
           { headers: { Authorization: "Bearer " + user.token } }
         )
         .then(() => {
-          history.push("/movie/table");
+          history.push("/game/table");
         });
     }
     setCurrentId(null);
-    setImage("");
+    setInputImg("");
     setInputName("");
-    setGenre("");
-    setDescription();
-    setDuration();
-    setRating("");
-    setRelease("");
+    setInputGenre("");
+    setInputSingle();
+    setInputMulti();
+    setInputPlatform("");
+    setInputRelease("");
   };
 
   return (
@@ -131,7 +131,7 @@ const MovieForm = () => {
                   required
                   className="input"
                   name="image_url"
-                  value={image}
+                  value={inputImg}
                   onChange={handleImgChange}
                 ></input>
               </div>
@@ -142,7 +142,7 @@ const MovieForm = () => {
                   required
                   className="input"
                   name="name"
-                  value={name}
+                  value={inputName}
                   onChange={handleNameChange}
                 ></input>
               </div>
@@ -153,7 +153,7 @@ const MovieForm = () => {
                   type="text"
                   className="input"
                   name="genre"
-                  value={genre}
+                  value={inputGenre}
                   onChange={handleGenreChange}
                 ></input>
               </div>{" "}
@@ -162,7 +162,7 @@ const MovieForm = () => {
                 <input
                   required
                   className="input"
-                  value={description}
+                  value={inputSingle}
                   name="singlePlayer"
                   type="number"
                   onChange={handleSingleChange}
@@ -173,7 +173,7 @@ const MovieForm = () => {
                 <input
                   required
                   className="input"
-                  value={duration}
+                  value={inputMulti}
                   type="number"
                   name="multiplayer"
                   onChange={handleMultiChange}
@@ -184,7 +184,7 @@ const MovieForm = () => {
                 <input
                   required
                   className="input"
-                  value={rating}
+                  value={inputPlatform}
                   name="singlePlayer"
                   onChange={handlePlatformChange}
                 ></input>
@@ -194,7 +194,7 @@ const MovieForm = () => {
                 <input
                   required
                   className="input"
-                  value={release}
+                  value={inputRelease}
                   name="singlePlayer"
                   onChange={handleReleaseChange}
                 ></input>
@@ -211,4 +211,4 @@ const MovieForm = () => {
     </>
   );
 };
-export default MovieForm;
+export default FormGame;
