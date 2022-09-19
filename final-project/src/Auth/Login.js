@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <>
       <div className="MainContainer">
-        <h1>Login</h1>
+        <h1 className="gamesTittle">Login</h1>
         <Form
           name="basic"
           labelCol={{
@@ -51,6 +51,7 @@ const Login = () => {
           autoComplete="off"
         >
           <Form.Item
+            className="textColor"
             label="Email"
             name="email"
             rules={[
@@ -64,6 +65,7 @@ const Login = () => {
           </Form.Item>
 
           <Form.Item
+            className="textColor"
             label="Password"
             name="password"
             rules={[
@@ -80,7 +82,7 @@ const Login = () => {
               span: 10,
             }}
           >
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" className="btnTableGame" htmlType="submit">
               Submit
             </Button>
           </Form.Item>

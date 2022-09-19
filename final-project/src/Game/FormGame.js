@@ -272,6 +272,9 @@ const FormGame = () => {
                     <td>
                       <input
                         required
+                        type="number"
+                        min={2000}
+                        max={2021}
                         className="input"
                         value={inputRelease}
                         name="singlePlayer"

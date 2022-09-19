@@ -35,8 +35,8 @@ const ScoreForm = () => {
       setInputImg(currentScore.image_url);
       setInputSingle(currentScore.singlePlayer);
       setInputMulti(currentScore.multiplayer);
-      setInputRelease(currentScore.platform);
-      setInputPlatform(currentScore.release);
+      setInputRelease(currentScore.release);
+      setInputPlatform(currentScore.platform);
     };
     if (id) {
       fetchData();

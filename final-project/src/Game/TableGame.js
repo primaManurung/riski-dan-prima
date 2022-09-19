@@ -94,7 +94,7 @@ const TableGame = () => {
         console.log(err);
       });
   };
- 
+
   const sorting = (col) => {
     if (sortedField === "ASC") {
       const sorted = [...game].sort((a, b) => (a[col] > b[col] ? 1 : -1));
@@ -228,8 +228,8 @@ const TableGame = () => {
                       {game
                         .filter(
                           (asd) =>
-                            asd.name.toLowerCase().includes(search1) ||
-                            asd.genre.toLowerCase().includes(search1)
+                            asd.name?.toLowerCase().includes(search1) ||
+                            asd.genre?.toLowerCase().includes(search1)
                         )
                         .map((item, index) => (
                           <StyledTableRow key={index}>

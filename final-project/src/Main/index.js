@@ -1,17 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "../Layout/Header";
-import HomeGame from "./HomeGame";
-import DetailGame from "./DetailGame";
-import TableGame from "./TableGame";
-import Footer from "../Layout/Footer"
+import HomeGame from "../Game/HomeGame";
+import DetailGame from "../Game/DetailGame";
+import TableGame from "../Game/DetailGame";
+import Footer from "../Layout/Footer";
 import MovieHome from "../Movie/MovieHome";
 import MovieTable from "../Movie/MovieTable";
 import MovieDetail from "../Movie/MovieDetail";
 import MovieForm from "../Movie/MovieForm";
 import MovieTest from "../Movie/MovieTest";
-
-
+import GameList from "../Gamelist/GameList";
 
 const Routes = () => {
   return (
@@ -20,7 +19,7 @@ const Routes = () => {
         <Header />
         <Switch>
           <Route exact path="/movie">
-            <MovieHome/>
+            <MovieHome />
           </Route>
           <Route exact path="/game">
             <HomeGame />
@@ -32,19 +31,19 @@ const Routes = () => {
             <MovieTest />
           </Route>
           <Route exact path="/game/:id/detail">
-            <DetailGame/>
+            <DetailGame />
           </Route>
           <Route exact path="/movie/:id/detail">
-            <MovieDetail/>
+            <MovieDetail />
           </Route>
           <Route exact path="/movie/:id/edit">
-            <MovieForm/>
+            <MovieForm />
           </Route>
           <Route exact path="/movie/create">
-            <MovieForm/>
+            <MovieForm />
           </Route>
         </Switch>
-        <Footer/>
+        <Footer />
       </>
     </Router>
   );
