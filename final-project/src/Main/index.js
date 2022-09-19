@@ -9,7 +9,7 @@ import MovieHome from "../Movie/MovieHome";
 import MovieTable from "../Movie/MovieTable";
 import MovieDetail from "../Movie/MovieDetail";
 import MovieForm from "../Movie/MovieForm";
-
+import MovieTest from "../Movie/MovieTest";
 
 
 
@@ -29,7 +29,7 @@ const Routes = () => {
             <TableGame />
           </Route>
           <Route exact path="/movie/table">
-            <MovieTable />
+            <MovieTest />
           </Route>
           <Route exact path="/game/:id/detail">
             <DetailGame/>
