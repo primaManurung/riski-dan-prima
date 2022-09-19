@@ -94,7 +94,7 @@ const TableGame = () => {
         console.log(err);
       });
   };
-
+ 
   const sorting = (col) => {
     if (sortedField === "ASC") {
       const sorted = [...game].sort((a, b) => (a[col] > b[col] ? 1 : -1));
