@@ -8,28 +8,29 @@ const MovieDetail = () => {
   let { id } = useParams();
   const url = "https://super-bootcamp-backend.sanbersy.com";
   const [movie, setMovie] = useState([]);
-  const [fetchTrigger, setFetchTrigger] = useState(true);
+  // const [fetchTrigger, setFetchTrigger] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get(`${url}/api/movies`);
-      setMovie(
-        result.data.map((x) => {
-          return { id: x.id, name: x.title, description: x.description, img: x.image_url };
-        })
-      );
-      setFetchTrigger(false);
-    };
-    if (fetchTrigger) {
-      fetchData();
-    }
-  }, [fetchTrigger]);
-  return (
-    <>
-      {movie.map((item, index) => {
-        return <h1 key={index}>{item.name}</h1>;
-      })}
-    </>
-  );
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const result = await axios.get(`${url}/api/movies/${id}`);
+//       setMovie(
+//         result.data.map((x) => {
+//           return <h1>{ id= x.id, title= x.title, description= x.description, img= x.image_url }</h1>;
+//         })
+//       );
+      
+//   //     setFetchTrigger(false);
+//   //   };
+//   //   if (fetchTrigger) {
+//   //     fetchData();
+//   //   }
+//   // }, [fetchTrigger]);
+//   // return (
+//   //   <>
+//   //     {movie.map((item, index) => {
+//   //       return <h1 key={index}>{item.name}</h1>;
+//   //     })}
+//     // </>
+//   // );
 };
 export default MovieDetail;
