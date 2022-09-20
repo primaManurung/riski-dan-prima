@@ -58,21 +58,24 @@ const Change = () => {
         <div className={user ? `SideContainerUser` : `SideContainer`}>
           {user ? <SideNavMenu /> : <></>}
           <div className="MainContainerUser1">
-            <div className="gamesTittle">Form Game</div>
+            <div className="gamesTittle">Form Change Password</div>
             <div>
-              <h1>{user.name}</h1>
+              <h1>Hai {user.name}...</h1>
             </div>
             <div>
-              <h1>{user.email}</h1>{" "}
+              <h1>{user.email}</h1>
             </div>
 
-            <div>
-              password baru :<input onChange={inputPassword}></input>
+            <div style={{"display":"flex"}}>
+              <h7 style={{"float":"left"}}>Password baru : </h7><input  style={{"margin-left":"42px"}} onChange={inputPassword}></input>
+            </div>
+            <div style={{"display":"flex"}}>
+              <h7 style={{"float":"left"}}>konfirmasi password : </h7><input  onChange={inputPassword2}></input>
             </div>
             <div>
-              ulangi password :<input onChange={inputPassword2}></input>
+            <button className="buttonChangepassword" style={{"margin-top":"20px"}} onClick={changePassword}>Submit</button>
             </div>
-            <button onClick={changePassword}>Submit</button>
+            
           </div>
         </div>
       </div>

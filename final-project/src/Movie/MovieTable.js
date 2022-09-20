@@ -187,7 +187,7 @@ const MovieTable = () => {
                         </select>
                       </div>
                       <div className="form-group col-md-3">
-                        <h5 className="mb-2">Rating</h5>
+                        <h5 className="mb-2">Release</h5>
                         <select
                           className="form-control"
                           onChange={(e) => handleRelease(e)}
