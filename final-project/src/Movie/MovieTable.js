@@ -13,6 +13,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../Auth/UserContext";
 import SideNavMenu from "../Layout/Sidenav";
+import { Container } from "react-bootstrap";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,7 +39,7 @@ const MovieTable = () => {
   let history = useHistory();
   const [user] = useContext(UserContext);
   const url = "https://super-bootcamp-backend.sanbersy.com";
-  const [game, setGame] = useState([]);
+  const [movie, setGame] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(true);
   const [search1, setSearch1] = useState("");
   const [sortedField, setSortedField] = useState("ASC");
@@ -70,21 +71,21 @@ const MovieTable = () => {
   // Search Item by Name
 
   //addGame
-  const addGame = () => {
+  const addMovie = () => {
     history.push("/movie/table/create");
   };
 
   //editGame
   const handleEdit = async (event) => {
-    let idGame = Number(event.target.value);
-    history.push(`/movie/table/${idGame}/edit`);
+    let idMovie = Number(event.target.value);
+    history.push(`/movie/table/${idMovie}/edit`);
   };
 
   //deleteGame
   const handleDelete = (event) => {
-    let idGame = parseInt(event.target.value);
+    let idMovie = parseInt(event.target.value);
     axios
-      .delete(`${url}/api/movies/${idGame}`, {
+      .delete(`${url}/api/movies/${idMovie}`, {
         headers: { Authorization: "Bearer " + user.token },
       })
       .then(() => {
@@ -97,16 +98,64 @@ const MovieTable = () => {
 
   const sorting = (col) => {
     if (sortedField === "ASC") {
-      const sorted = [...game].sort((a, b) => (a[col] > b[col] ? 1 : -1));
+      const sorted = [...movie].sort((a, b) => (a[col] > b[col] ? 1 : -1));
       setSortedField("DSC");
       setGame(sorted);
     }
     if (sortedField === "DSC") {
-      const sorted = [...game].sort((a, b) => (a[col] < b[col] ? 1 : -1));
+      const sorted = [...movie].sort((a, b) => (a[col] < b[col] ? 1 : -1));
       setSortedField("ASC");
       setGame(sorted);
     }
   };
+
+  const handleGenre = (event) => {
+    const getFilterGame = event.target.value.toLowerCase();
+    // if (getFilterGame == "--select genre--") {
+    //   window.location.reload();
+    // } else {
+    const filtered = [...movie].filter((item) => {
+      return item.genre.toLowerCase() === getFilterGame;
+    });
+    console.log(filtered);
+    setGame(filtered);
+    // }
+  };
+
+  const handleRelease = (event) => {
+    const getFilterGame = event.target.value.toLowerCase();
+    // if (getFilterGame == "--select release--") {
+    //   window.location.reload();
+    // } else {
+    const filtered = [...movie].filter((item) => {
+      return item.year.toLowerCase() === getFilterGame;
+    });
+    console.log(filtered);
+    // alert(filtered);
+    setGame(filtered);
+    // setSearch1(getFilterGame);
+    // event.preventDefault();
+    // console.log(search1);
+    // }
+  };
+
+  const handleRating = (event) => {
+    const getFilterGame = event.target.value.toLowerCase();
+
+    const filtered = [...movie].filter((item) => {
+      return item.rating.toLowerCase() === getFilterGame;
+    });
+    console.log(filtered);
+    // alert(filtered);
+    setGame(filtered);
+    // if (getFilterGame == "--select platform--") {
+    //   window.location.reload();
+    // }
+  };
+  const btnReset = () => {
+    return window.location.reload();
+  };
+
 
   return (
     <>
@@ -115,14 +164,69 @@ const MovieTable = () => {
           {user ? <SideNavMenu /> : <></>}
           <div>
             <div className="gamesTittle">
-              Table Movie{" "}
-              <button className="AddGame" onClick={addGame}>
-                Add Movie
-              </button>
+              Table Movie           
             </div>
-
+            <div>
+            <Container className="content contentSelect">
+                <div className="row">
+                  <div className="col-sm-12">
+                    <div style={{"alignItems":"center"}} className="row mb-3">
+                      <div className="form-group col-md-3">
+                        <h5 className="mb-2">Genre</h5>
+                        <select
+                          className="form-control"
+                          onChange={(e) => handleGenre(e)}
+                        >
+                          <option>--Select--</option>
+                          {movie.map((item) => (
+                            <option key={item.id} value={item.genre}>
+                              {" "}
+                              {item.genre}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="form-group col-md-3">
+                        <h5 className="mb-2">Rating</h5>
+                        <select
+                          className="form-control"
+                          onChange={(e) => handleRelease(e)}
+                        >
+                          <option>--Select--</option>
+                          {movie.map((item) => (
+                            <option key={item.id} value={item.year}>
+                              {item.year}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="form-group col-md-3">
+                        <h5 className="mb-2">Rating</h5>
+                        <select
+                          className="form-control"
+                          onChange={(e) => handleRating(e)}
+                        >
+                          <option>--Select--</option>
+                          {movie.map((item) => (
+                            <option key={item.id} value={item.rating}>
+                              {item.rating}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="form-group col-md-3">
+                        <button style={{"width":"100px"}} className="btnReset" onClick={btnReset}>
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Container>
+            </div>
             <div className="GameContainer">
               <div className="tableContainer">
+                <div>
                 <input
                   className="inputSearch"
                   type="text"
@@ -130,6 +234,7 @@ const MovieTable = () => {
                   onChange={(e) => setSearch1(e.target.value.toLowerCase())}
                   placeholder="Search by Name or Genre...."
                 ></input>
+                </div>
                 <TableContainer className="tableGame" component={Paper}>
                   <Table sx={{ Width: 700 }}  stickyHeader
                     aria-label="sticky table" >
@@ -169,7 +274,7 @@ const MovieTable = () => {
                         <StyledTableCell className="tableTable"></StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
-                            className="buttonGames"
+                            className="buttonMovie"
                             onClick={() => sorting("title")}
                           >
                             Sort
@@ -177,7 +282,7 @@ const MovieTable = () => {
                         </StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
-                            className="buttonGames"
+                            className="buttonMovie"
                             onClick={() => sorting("genre")}
                           >
                             Sort
@@ -189,7 +294,7 @@ const MovieTable = () => {
                         ></StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
-                            className="buttonGames"
+                            className="buttonMovie"
                             onClick={() => sorting("duration")}
                           >
                             Sort
@@ -197,7 +302,7 @@ const MovieTable = () => {
                         </StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
-                            className="buttonGames"
+                            className="buttonMovie"
                             onClick={() => sorting("year")}
                           >
                             Sort
@@ -205,7 +310,7 @@ const MovieTable = () => {
                         </StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
-                            className="buttonGames"
+                            className="buttonMovie"
                             onClick={() => sorting("rating")}
                           >
                             Sort
@@ -222,7 +327,7 @@ const MovieTable = () => {
                       </TableRow>
                     </TableBody>
                     <TableBody>
-                      {game
+                      {movie
                         .filter(
                           (asd) =>
                             asd.name?.toLowerCase().includes(search1) ||
@@ -313,6 +418,9 @@ const MovieTable = () => {
                     </TableBody>
                   </Table>
                 </TableContainer>
+                <button style={{"marginTop":"20px", "padding":"10px", "width":"200px", "color":"white"}} className="AddGame" onClick={addMovie}>
+                Add New Movie
+              </button>
               </div>
             </div>
           </div>

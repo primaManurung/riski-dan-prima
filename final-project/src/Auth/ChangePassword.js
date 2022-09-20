@@ -35,6 +35,13 @@ const ChangePassword = () =>{
         <div>
             <div className="box">
                 <div className="isiBox">
+                <div className="gantiPass">
+                        <label>Old Password</label>
+                        <input type="password" placeholder="masukan password lama" className="gayaForm" value={password} onChange={gantiPassword}/>
+                        {errorPassword && (
+                                <p className="text-danger">{errorPassword}</p>
+                            )}
+                    </div>
                     <div className="gantiPass">
                         <label>New Password</label>
                         <input type="password" placeholder="masukan password baru" className="gayaForm" value={password} onChange={gantiPassword}/>

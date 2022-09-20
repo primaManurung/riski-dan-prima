@@ -103,7 +103,7 @@ visibility: hidden;
   border: 3px solid #05386B;
   color: #05386B !important;
   width: 25%;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .togelSideNav{
@@ -117,7 +117,18 @@ visibility: hidden;
  font-weight: 600;
  font-size: 18px;
  border-radius: 15px;
+ background-color: #05386B;
+ color: #EDF5E1
 }
+.btnReset:hover{
+  height: 40px;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 15px;
+  background-color: #247968;
+  color: #EDF5E1;
+ }
+
 .AddGame{
   background-color: #05386B;
   color: #5CDB95;
@@ -257,9 +268,9 @@ td{
 }
 
 .buttonGames{
-  background: #5CDB95 ;
+  background: #296fb6 ;
   border: 0 !important;
-  color: #05386B !important;
+  color: #EDF5E1 !important;
   font-weight: 700 !important;
   border-radius: 10px;
 }
@@ -271,6 +282,23 @@ td{
   font-weight: 700 !important;
   border-radius: 10px;
 }
+
+.buttonMovie{
+  background: #296fb6 ;
+  border: 0 !important;
+  color: #EDF5E1 !important;
+  font-weight: 700 !important;
+  border-radius: 5px;
+}
+
+.buttonMovie:hover{
+  background: #EDF5E1;
+  border: 0 !important;
+  color: #379683 !important;
+  font-weight: 700 !important;
+  border-radius: 5px;
+}
+
 
 .card {
   box-shadow: 8px 8px 8px 0 rgba(0, 0, 0, 0.2);
