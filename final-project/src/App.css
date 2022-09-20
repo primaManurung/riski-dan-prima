@@ -152,6 +152,14 @@ visibility: hidden;
   border-radius: 10px;
 
 }
+.btnTableGame:hover{
+  width: 60px;
+  margin: 5px;
+  border: 0;
+  background: #379683;
+  color: #EDF5E1;
+  border-radius: 10px;
+}
 .togelSidenav{
   color: black;
 }
@@ -307,6 +315,13 @@ img{
   border-radius: 45px 45px ;
   opacity: 0.9;
 }
+.imageTableMovie{
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 5px 5px ;
+  opacity: 0.9;
+}
 
 .tableCell{
   text-align: left !important;
@@ -412,22 +427,15 @@ img{
 }
 
 .cardMovieContainer{
-  margin-top: 30px;
+  margin: 10px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center !important;
   width: 95%;
+  flex-direction: column;
 }
 
-.cardMovieContainer{
-  margin-top: 30px;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center !important;
-  width: 95%;
-}
 
 .movieCard {
   padding: 10px;
@@ -439,6 +447,13 @@ img{
   background:#05386B !important;
   color: #5CDB95;
 }
+.cardMovieUser{
+  padding: 5px;
+  margin: 10px;
+  display: flex;
+  width: 22%;
+  flex-wrap: wrap;
+}
 
 .imgMovie{
   width: 100%;
@@ -448,10 +463,30 @@ img{
 
 .buttonMovie{
   margin: 10px;
-  width: 100%;
+  width: 93%;
   background: #8EE4AF ;
   border: 0 !important;
   color: #05386B !important;
+  font-weight: 700 !important;
+  border-radius: 5px;
+}
+
+.buttonForm{
+  margin: 20px;
+  width: 100%;
+  background: #05386B ;
+  border: 0 !important;
+  color: #8EE4AF !important;
+  font-weight: 700 !important;
+  border-radius: 5px;
+  
+}
+.buttonForm:hover{
+  margin: 20px;
+  width: 100%;
+  background: #3269a0 ;
+  border: 0 !important;
+  color: #072e16 !important;
   font-weight: 700 !important;
   border-radius: 5px;
 }
@@ -516,4 +551,20 @@ img{
 }
 img.gambar{
   border-radius: 10px 10px 0 0;
+}
+.buttonTableMovie{
+  width: 60px;
+  margin: 5px;
+  border: 0;
+  background: #05386B;
+  color: #EDF5E1;
+  border-radius: 5px;
+}
+.buttonTableMovie:hover{
+  width: 60px;
+  margin: 5px;
+  border: 0;
+  background: #379683;
+  color: #EDF5E1;
+  border-radius: 5px;
 }

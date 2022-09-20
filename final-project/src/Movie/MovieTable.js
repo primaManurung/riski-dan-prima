@@ -224,8 +224,8 @@ const MovieTable = () => {
                         .map((item, index) => (
                           <StyledTableRow key={index}>
                             <StyledTableCell component="th" scope="row">
-                              <img
-                                className="imgTable"
+                              <img style={{"width":"50px"}}
+                                className="imageTableMovie"
                                 src={item.image}
                                 alt="Game List"
                               ></img>
@@ -252,7 +252,7 @@ const MovieTable = () => {
                               className="tableCell"
                               align="right"
                             >
-                              {item.duration}
+                              {item.duration} menit
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
@@ -261,10 +261,11 @@ const MovieTable = () => {
                               {item.year}
                             </StyledTableCell>
                             <StyledTableCell
+                            style={{"width":"80px"}}
                               className="tableCell"
                               align="right"
                             >
-                              {item.rating}
+                              {item.rating} / 10
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
@@ -280,7 +281,7 @@ const MovieTable = () => {
                               >
                                 <span>
                                   <button
-                                    className="btnTableGame"
+                                    className="buttonTableMovie"
                                     onClick={handleEdit}
                                     value={item.id}
                                   >
@@ -289,7 +290,7 @@ const MovieTable = () => {
                                 </span>
                                 <span>
                                   <button
-                                    className="btnTableGame"
+                                    className="buttonTableMovie"
                                     onClick={handleDelete}
                                     value={item.id}
                                   >

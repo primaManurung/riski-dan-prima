@@ -41,17 +41,17 @@ function MovieHome() {
             <div className="gamesTittle">
               Movie Collection
             </div>
-            <div className={user ? `CardContainerUser` : `cardMovieCont`}>
+            <div className={user ? `CardContainerUser` : `ccardContainer`}>
               {movie.map((item, index) => {
                 return (
                   <div className={user ? ` cardMovieUser` : `movieCard`} key={index}>
                     <img className="gambar" src={item.img} alt="Avatar" />
                     <div className="cardMovieContainer">
-                     
-                      {/* <p>{item.title}</p> */}
-                      {/* <p>{item.release}</p> */}
-                      <p>{item.genre}</p>
-                      
+                    <h6>
+                        <b style={{"color":"white"}}>{item.title}</b>
+                      </h6>
+                      <p>{item.genre}</p>                      
+                      <p>{item.release}</p>                      
                       <button
                         className="buttonMovie"
                         onClick={handleDetail}
