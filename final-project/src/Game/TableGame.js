@@ -14,6 +14,8 @@ import { useContext } from "react";
 import { UserContext } from "../Auth/UserContext";
 import SideNavMenu from "../Layout/Sidenav";
 
+import { Container } from "react-bootstrap";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -41,6 +43,7 @@ const TableGame = () => {
   const [game, setGame] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(true);
   const [search1, setSearch1] = useState("");
+  const [filterGame, setFilterGame] = useState("");
   const [sortedField, setSortedField] = useState("ASC");
   useEffect(() => {
     const fetchData = async () => {
@@ -67,6 +70,53 @@ const TableGame = () => {
   }, [fetchTrigger]);
   // handle change event of search input
   // Search Item by Name
+
+  const handleGenre = (event) => {
+    const getFilterGame = event.target.value.toLowerCase();
+    // if (getFilterGame == "--select genre--") {
+    //   window.location.reload();
+    // } else {
+    const filtered = [...game].filter((item) => {
+      return item.genre.toLowerCase() === getFilterGame;
+    });
+    console.log(filtered);
+    setGame(filtered);
+    // }
+  };
+
+  const handleRelease = (event) => {
+    const getFilterGame = event.target.value.toLowerCase();
+    // if (getFilterGame == "--select release--") {
+    //   window.location.reload();
+    // } else {
+    const filtered = [...game].filter((item) => {
+      return item.release.toLowerCase() === getFilterGame;
+    });
+    console.log(filtered);
+    // alert(filtered);
+    setGame(filtered);
+    // setSearch1(getFilterGame);
+    // event.preventDefault();
+    // console.log(search1);
+    // }
+  };
+
+  const handlePlatform = (event) => {
+    const getFilterGame = event.target.value.toLowerCase();
+
+    const filtered = [...game].filter((item) => {
+      return item.platform.toLowerCase() === getFilterGame;
+    });
+    console.log(filtered);
+    // alert(filtered);
+    setGame(filtered);
+    // if (getFilterGame == "--select platform--") {
+    //   window.location.reload();
+    // }
+  };
+  const btnReset = () => {
+    return window.location.reload();
+  };
 
   //addGame
   const addGame = () => {
@@ -114,21 +164,89 @@ const TableGame = () => {
           {user ? <SideNavMenu /> : <></>}
           <div>
             <div className="gamesTittle">
-              Table Game{" "}
-              <button className="AddGame" onClick={addGame}>
-                Add Game
-              </button>
+              Table Game
+              {/* //Select */}
+              <Container className="content contentSelect">
+                <div className="row">
+                  <div className="col-sm-12">
+                    <div className="row mb-3">
+                      <div className="form-group col-md-3">
+                        <h5 className="mb-2">Genre</h5>
+                        <select
+                          name="country"
+                          className="form-control"
+                          onChange={(e) => handleGenre(e)}
+                        >
+                          <option>--Select Genre--</option>
+                          {game.map((item) => (
+                            <option key={item.id} value={item.genre}>
+                              {" "}
+                              {item.genre}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="form-group col-md-3">
+                        <h5 className="mb-2">Release</h5>
+                        <select
+                          name="state"
+                          className="form-control"
+                          onChange={(e) => handleRelease(e)}
+                        >
+                          <option>--Select Release--</option>
+                          {game.map((item, index) => (
+                            <option key={index} value={item.release}>
+                              {item.release}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="form-group col-md-3">
+                        <h5 className="mb-2">Platform</h5>
+                        <select
+                          name="state"
+                          className="form-control"
+                          onChange={(e) => handlePlatform(e)}
+                        >
+                          <option>--Select Platform--</option>
+                          {game.map((item, index) => (
+                            <option key={index} value={item.platform}>
+                              {item.platform}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="form-group col-md-3">
+                        <button className="btnReset" onClick={btnReset}>
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Container>
+              {/* //select */}
             </div>
 
             <div className="GameContainer">
               <div className="tableContainer">
+                <button className="AddGame" onClick={addGame}>
+                  Add Game
+                </button>
                 <input
                   className="inputSearch"
                   type="text"
                   value={search1}
                   onChange={(e) => setSearch1(e.target.value.toLowerCase())}
-                  placeholder="Search by Name or Genre...."
+                  placeholder="Search by Name ...."
                 ></input>
+                {/* <input
+                  className="inputSearch"
+                  type="text"
+                  value={countryid2}
+                  onChange={() => setCountryid2(())}
+                  placeholder="Search by Genrr ...."
+                ></input> */}
                 <TableContainer component={Paper} className="tableGame">
                   <Table
                     sx={{ Width: 700 }}
@@ -164,7 +282,7 @@ const TableGame = () => {
                         </StyledTableCell>
                       </TableRow>
                     </TableHead>
-                    <TableHead>
+                    <TableBody>
                       <TableRow>
                         <StyledTableCell className="tableTable">
                           <button
@@ -227,7 +345,7 @@ const TableGame = () => {
                           align="left"
                         ></StyledTableCell>
                       </TableRow>
-                    </TableHead>
+                    </TableBody>
                     <TableBody>
                       {game
                         .filter(
