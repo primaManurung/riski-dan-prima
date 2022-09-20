@@ -17,13 +17,28 @@
   text-align: left;
   border: 0px !important;
 }
+.divInput{
+  width: 200px;
+}
+.input{
+  width: 100%;
+}
 
+.formGame{
+  width: 400px;
+  /* border: 2px solid; */
+ text-align: left;
+  display: flex;
+  color: #05386B;
+  font-weight: 800;
+}
 .MainContainer{
   text-align: center !important;
   background: #5CDB95;
   border: 2px solid #5CDB95;
-
+  min-height: 550px;  
 }
+
 
 .MainContainerUser{
   text-align: center !important;
@@ -31,6 +46,25 @@
   border: 2px solid #5CDB95;
   min-height: 600px;
   display: flex;
+}
+
+.tableGame{
+  width: 80% !important;
+  margin: auto;
+  text-align: center;
+  max-height: 600px !important;
+  color: #05386B !important;
+}
+.tableGame1{
+  width: 100% !important;
+}
+
+
+.MainContainerUser1{
+  text-align: center !important;
+  background: #5CDB95;
+  margin: auto;
+  min-height: 600px;
 }
 .SideContainerUser{
   text-align: center !important;
@@ -40,10 +74,23 @@
   /* flex-wrap: wrap; */
   width: 100%;
 }
+.singleField{
+  color: #05386B ;
+  font-weight: 800;
+}
+.singleField2{
+  background: #05386B;
+  color: #5CDB95 ;
+  width: 20px;
+  font-weight: 800;
+}
+
+
 .inputfieldSingle{
   display: none;
 visibility: hidden;
 }
+
 
 .sideNav{
   background: #5CDB95;
@@ -144,7 +191,7 @@ visibility: hidden;
   padding-top: 15%;
 }
 .btnTableGame{
-  width: 60px;
+  width: 70px;
   margin: 5px;
   border: 0;
   background: #05386B;
@@ -318,9 +365,20 @@ img{
 .imageTableMovie{
   width: 100%;
   height: 90px;
+  border-radius: 5px 5px ;
+  opacity: 0.9;
+}
+.imgTable2{
+  width: 50%;
+  height: 30px;
   object-fit: cover;
   border-radius: 5px 5px ;
   opacity: 0.9;
+}
+.tableCol{
+  height: 20px !important;
+  background: #EDF5E1;
+  color: #05386B !important;
 }
 
 .tableCell{

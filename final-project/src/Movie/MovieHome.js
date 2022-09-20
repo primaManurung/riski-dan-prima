@@ -9,14 +9,24 @@ function MovieHome() {
   const url = "https://super-bootcamp-backend.sanbersy.com";
   const [movie, setMovie] = useState([]);
   const [fetchTrigger, setFetchTrigger] = useState(true);
-  const [user, setuser] = useContext(UserContext)
+  const [user] = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`${url}/api/movies`);
       setMovie(
         result.data.map((x) => {
-          return { id: x.id, title: x.title, genre: x.genre ,description: x.description, duration: x.duration , release: x.year, rating: x.rating, review: x.review,img: x.image_url };
+          return {
+            id: x.id,
+            title: x.title,
+            genre: x.genre,
+            description: x.description,
+            duration: x.duration,
+            release: x.year,
+            rating: x.rating,
+            review: x.review,
+            img: x.image_url,
+          };
         })
       );
       setFetchTrigger(false);
@@ -38,13 +48,14 @@ function MovieHome() {
         <div className={user ? `SideContainerUser` : `SideContainer`}>
           {user ? <SideNavMenu /> : <></>}
           <div>
-            <div className="gamesTittle">
-              Movie Collection
-            </div>
-            <div className={user ? `CardContainerUser` : `ccardContainer`}>
+            <div className="gamesTittle">Movie Collection</div>
+            <div className={user ? `CardContainerUser` : `cardContainer`}>
               {movie.map((item, index) => {
                 return (
-                  <div className={user ? ` cardMovieUser` : `movieCard`} key={index}>
+                  <div
+                    className={user ? ` cardMovieUser` : `movieCard`}
+                    key={index}
+                  >
                     <img className="gambar" src={item.img} alt="Avatar" />
                     <div className="cardMovieContainer">
                     <h6>

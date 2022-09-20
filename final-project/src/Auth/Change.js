@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Form, Input } from "antd";
 import { UserContext } from "./UserContext";
 import axios from "axios";
+import SideNavMenu from "../Layout/Sidenav";
 
 const Change = () => {
   const [user, setUser] = useContext(UserContext);
@@ -29,14 +30,27 @@ const Change = () => {
 
   return (
     <>
-      <h1>{user.name}</h1>
-      <h1>{user.email}</h1>
-      <h1>{user.password}</h1>
-
-      <input onChange={inputPassword}></input>
-      <input onChange={inputPassword2}></input>
-
-      <button onClick={changePassword}>Submit</button>
+      <div className={user ? `MainContainerUser1` : `MainContainer`}>
+        <div className={user ? `SideContainerUser` : `SideContainer`}>
+          {user ? <SideNavMenu /> : <></>}
+          <div className="MainContainerUser1">
+            <div className="gamesTittle">Form Game</div>
+            <div>
+              <h1>{user.name}</h1>
+            </div>
+            <div>
+              <h1>{user.email}</h1>{" "}
+            </div>
+            <div>
+              password baru :<input onChange={inputPassword}></input>
+            </div>
+            <div>
+              ulangi password :<input onChange={inputPassword2}></input>
+            </div>
+            <button onClick={changePassword}>Submit</button>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

@@ -147,6 +147,7 @@ const MovieForm = () => {
                       <input
                         type="text"
                         required
+                        autoComplete="off"
                         className="input"
                         name="image_url"
                         value={image}
@@ -173,6 +174,7 @@ const MovieForm = () => {
                       {" "}
                       <input
                         required
+                        autoComplete="off"
                         type="text"
                         className="input"
                         name="genre"
@@ -200,6 +202,7 @@ const MovieForm = () => {
                     <div>
                       <input
                         required
+                        autoComplete="off"
                         min={60}
                         max={240}
                         type="number"
@@ -214,6 +217,7 @@ const MovieForm = () => {
                     <label>Release :</label>
                     <div>
                       <input
+                      autoComplete="off"
                         required
                         min={1900}
                         max={2022}

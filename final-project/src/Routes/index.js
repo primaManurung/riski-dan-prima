@@ -25,7 +25,6 @@ import MovieDetail from "../Movie/MovieDetail";
 
 const Routes = () => {
   const [user] = useContext(UserContext);
-  let history = useHistory();
   const PrivateRoute = ({ ...rest }) => {
     if (user) {
       return <Route {...rest} />;

@@ -54,7 +54,7 @@ const MovieTable = () => {
             image: x.image_url,
             year: x.year,
             description: x.description,
-            duration:x.duration,
+            duration: x.duration,
             review: x.review,
             rating: x.rating,
           };
@@ -115,9 +115,9 @@ const MovieTable = () => {
           {user ? <SideNavMenu /> : <></>}
           <div>
             <div className="gamesTittle">
-              Table Game{" "}
+              Table Movie{" "}
               <button className="AddGame" onClick={addGame}>
-                Add Game
+                Add Movie
               </button>
             </div>
 
@@ -131,7 +131,7 @@ const MovieTable = () => {
                   placeholder="Search by Name or Genre...."
                 ></input>
                 <TableContainer component={Paper}>
-                  <Table sx={{ Width: 700 }} aria-label="customized table">
+                  <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                       <TableRow>
                         <StyledTableCell className="tableTable">
@@ -165,8 +165,7 @@ const MovieTable = () => {
                     </TableHead>
                     <TableHead>
                       <TableRow>
-                        <StyledTableCell className="tableTable">
-                        </StyledTableCell>
+                        <StyledTableCell className="tableTable"></StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
                             className="buttonGames"
@@ -183,8 +182,10 @@ const MovieTable = () => {
                             Sort
                           </button>
                         </StyledTableCell>
-                        <StyledTableCell className="tableTable" align="left">
-                        </StyledTableCell>
+                        <StyledTableCell
+                          className="tableTable"
+                          align="left"
+                        ></StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
                           <button
                             className="buttonGames"
@@ -202,24 +203,29 @@ const MovieTable = () => {
                           </button>
                         </StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
-                        <button
+                          <button
                             className="buttonGames"
                             onClick={() => sorting("rating")}
                           >
                             Sort
                           </button>
                         </StyledTableCell>
-                        <StyledTableCell className="tableTable" align="left">                          
-                        </StyledTableCell>
-                        <StyledTableCell className="tableTable" align="left">                          
-                        </StyledTableCell>
+                        <StyledTableCell
+                          className="tableTable"
+                          align="left"
+                        ></StyledTableCell>
+                        <StyledTableCell
+                          className="tableTable"
+                          align="left"
+                        ></StyledTableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {game
-                        .filter((asd) =>
-                          asd.name?.toLowerCase().includes(search1) ||
-                          asd.genre?.toLowerCase().includes(search1)
+                        .filter(
+                          (asd) =>
+                            asd.name?.toLowerCase().includes(search1) ||
+                            asd.genre?.toLowerCase().includes(search1)
                         )
                         .map((item, index) => (
                           <StyledTableRow key={index}>
@@ -273,7 +279,7 @@ const MovieTable = () => {
                             >
                               {item.review}
                             </StyledTableCell>
-                            
+
                             {user ? (
                               <StyledTableCell
                                 className="tableCell"
