@@ -71,7 +71,7 @@ const Login = () => {
             rules={[
               {
                 required: true,
-                message: "Maukan password!",
+                message: "Masukan password!",
               },
             ]}
           >

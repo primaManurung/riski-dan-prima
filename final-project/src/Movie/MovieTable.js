@@ -115,9 +115,9 @@ const MovieTable = () => {
           {user ? <SideNavMenu /> : <></>}
           <div>
             <div className="gamesTittle">
-              Table Game{" "}
+              Table Movie{" "}
               <button className="AddGame" onClick={addGame}>
-                Add Game
+                Add Movie
               </button>
             </div>
 
@@ -130,8 +130,9 @@ const MovieTable = () => {
                   onChange={(e) => setSearch1(e.target.value.toLowerCase())}
                   placeholder="Search by Name or Genre...."
                 ></input>
-                <TableContainer component={Paper}>
-                  <Table sx={{ maxWidth: 700 }} aria-label="customized table">
+                <TableContainer className="tableGame" component={Paper}>
+                  <Table sx={{ Width: 700 }}  stickyHeader
+                    aria-label="sticky table" >
                     <TableHead>
                       <TableRow>
                         <StyledTableCell className="tableTable">
@@ -163,7 +164,7 @@ const MovieTable = () => {
                         </StyledTableCell>
                       </TableRow>
                     </TableHead>
-                    <TableHead>
+                    <TableBody>
                       <TableRow>
                         <StyledTableCell className="tableTable"></StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
@@ -219,7 +220,7 @@ const MovieTable = () => {
                           align="left"
                         ></StyledTableCell>
                       </TableRow>
-                    </TableHead>
+                    </TableBody>
                     <TableBody>
                       {game
                         .filter(
@@ -230,8 +231,8 @@ const MovieTable = () => {
                         .map((item, index) => (
                           <StyledTableRow key={index}>
                             <StyledTableCell component="th" scope="row">
-                              <img
-                                className="imgTable"
+                              <img style={{"width":"50px"}}
+                                className="imageTableMovie"
                                 src={item.image}
                                 alt="Game List"
                               ></img>
@@ -258,7 +259,7 @@ const MovieTable = () => {
                               className="tableCell"
                               align="right"
                             >
-                              {item.duration}
+                              {item.duration} menit
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
@@ -267,10 +268,11 @@ const MovieTable = () => {
                               {item.year}
                             </StyledTableCell>
                             <StyledTableCell
+                            style={{"width":"80px"}}
                               className="tableCell"
                               align="right"
                             >
-                              {item.rating}
+                              {item.rating} / 10
                             </StyledTableCell>
                             <StyledTableCell
                               className="tableCell"
@@ -286,7 +288,7 @@ const MovieTable = () => {
                               >
                                 <span>
                                   <button
-                                    className="btnTableGame"
+                                    className="buttonTableMovie"
                                     onClick={handleEdit}
                                     value={item.id}
                                   >
@@ -295,7 +297,7 @@ const MovieTable = () => {
                                 </span>
                                 <span>
                                   <button
-                                    className="btnTableGame"
+                                    className="buttonTableMovie"
                                     onClick={handleDelete}
                                     value={item.id}
                                   >

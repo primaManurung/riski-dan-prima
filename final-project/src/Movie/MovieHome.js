@@ -58,10 +58,11 @@ function MovieHome() {
                   >
                     <img className="gambar" src={item.img} alt="Avatar" />
                     <div className="cardMovieContainer">
-                      {/* <p>{item.title}</p> */}
-                      {/* <p>{item.release}</p> */}
-                      <p>{item.genre}</p>
-
+                    <h6>
+                        <b style={{"color":"white"}}>{item.title}</b>
+                      </h6>
+                      <p>{item.genre}</p>                      
+                      <p>{item.release}</p>                      
                       <button
                         className="buttonMovie"
                         onClick={handleDetail}

@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import { useContext } from "react";
 import SideNavMenu from "../Layout/Sidenav";
-import Table from "react-bootstrap/Table";
+import form from "react-bootstrap/Table";
 
 const MovieForm = () => {
   let history = useHistory();
@@ -135,33 +135,29 @@ const MovieForm = () => {
         <div className={user ? `SideContainerUser` : `SideContainer`}>
           {user ? <SideNavMenu /> : <></>}
           <div className="textCenter">
-            <div className="gamesTittle">Form Game</div>
+            <div className="gamesTittle">Movie Form</div>
             
-              <Table className="formTable">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Form Game</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Link Image :</td>
-                    <td>
+              <form className="formTable">
+                
+                <div>
+                  <div style={{"display":"flex"}}>
+                    <label>Link Image :</label>
+                    <div>
                       {" "}
                       <input
                         type="text"
                         required
+                        autoComplete="off"
                         className="input"
                         name="image_url"
                         value={image}
                         onChange={handleImage}
                       ></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Name : </td>
-                    <td>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Name : </label>
+                    <div>
                       <input
                         type="text"
                         required
@@ -170,87 +166,99 @@ const MovieForm = () => {
                         value={name}
                         onChange={handleTitle}
                       ></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Genre : </td>
-                    <td>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Genre : </label>
+                    <div>
                       {" "}
                       <input
                         required
+                        autoComplete="off"
                         type="text"
                         className="input"
                         name="genre"
                         value={genre}
                         onChange={handleGenre}
                       ></input>
-                    </td>
-                  </tr>
+                    </div>
+                  </div>
                  
-                  <tr>
-                    <td>Description :</td>
-                    <td>
-                      <input
+                  <div>
+                    <label>Description :</label>
+                    <div>
+                      <textarea style={{"width":"115%","height":"200px"}}
                         required
+                        width="100px"
                         className="input"
                         value={description}
                         name="description"
                         onChange={handleDescription}
-                      ></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Duration :</td>
-                    <td>
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Duration :</label>
+                    <div>
                       <input
                         required
+                        autoComplete="off"
+                        min={60}
+                        max={240}
+                        type="number"
                         className="input"
                         value={duration}
                         name="duration"
                         onChange={handleDuration}
                       ></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Release :</td>
-                    <td>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Release :</label>
+                    <div>
                       <input
+                      autoComplete="off"
                         required
+                        min={1900}
+                        max={2022}
+                        type="number"
                         className="input"
                         value={release}
                         name="year"
                         onChange={handleRelease}
                       ></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Release :</td>
-                    <td>
+                    </div>
+                  </div>
+                  <div>
+                    <label>Rating :</label>
+                    <div>
                       <input
                         required
+                        max={10}
+                        type="number"
                         className="input"
                         value={rating}
                         name="rating"
                         onChange={handleRating}
                       ></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Release :</td>
-                    <td>
-                      <input
+                    </div>
+                  </div>
+                  <div>
+                    <label>Review :</label>
+                    <div>
+                      <textarea style={{"width":"115%","height":"100px"}}
                         required
                         className="input"
                         value={review}
                         name="review"
                         onChange={handleReview}
-                      ></input>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </form>
               <button
-                className="btnTableGame"
+                className="buttonForm"
                 type="submit"
                 onClick={handleSubmit}
               >
