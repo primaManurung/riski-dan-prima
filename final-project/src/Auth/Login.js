@@ -41,7 +41,7 @@ const Login = () => {
             span: 4,
           }}
           wrapperCol={{
-            span: 16,
+            span: 5,
           }}
           initialValues={{
             remember: true,

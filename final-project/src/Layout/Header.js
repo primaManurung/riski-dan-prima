@@ -37,7 +37,7 @@ const Header = () => {
               Games
             </Link>
             <Link className="navColor keyFont" to="/movie">
-              Movie
+              Movies
             </Link>
 
             {user ? (
