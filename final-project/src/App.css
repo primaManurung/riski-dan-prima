@@ -251,6 +251,15 @@ td{
   font-weight: 700 !important;
   border-radius: 10px;
 }
+
+.buttonGames:hover{
+  background: #EDF5E1;
+  border: 0 !important;
+  color: #379683 !important;
+  font-weight: 700 !important;
+  border-radius: 10px;
+}
+
 .card {
   box-shadow: 8px 8px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;

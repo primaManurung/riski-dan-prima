@@ -130,8 +130,9 @@ const MovieTable = () => {
                   onChange={(e) => setSearch1(e.target.value.toLowerCase())}
                   placeholder="Search by Name or Genre...."
                 ></input>
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableContainer className="tableGame" component={Paper}>
+                  <Table sx={{ Width: 700 }}  stickyHeader
+                    aria-label="sticky table" >
                     <TableHead>
                       <TableRow>
                         <StyledTableCell className="tableTable">
@@ -163,7 +164,7 @@ const MovieTable = () => {
                         </StyledTableCell>
                       </TableRow>
                     </TableHead>
-                    <TableHead>
+                    <TableBody>
                       <TableRow>
                         <StyledTableCell className="tableTable"></StyledTableCell>
                         <StyledTableCell className="tableTable" align="left">
@@ -219,7 +220,7 @@ const MovieTable = () => {
                           align="left"
                         ></StyledTableCell>
                       </TableRow>
-                    </TableHead>
+                    </TableBody>
                     <TableBody>
                       {game
                         .filter(
