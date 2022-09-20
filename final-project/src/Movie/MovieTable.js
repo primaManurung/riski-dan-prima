@@ -226,7 +226,10 @@ const MovieTable = () => {
             </div>
             <div className="GameContainer">
               <div className="tableContainer">
-                <div>
+                <div style={{"display":"flex","justify-content": "center"}}>
+                  <div style={{"margin-right":"20px","margin-top": "2px"}}>
+                  Search Box :     
+                  </div>
                 <input
                   className="inputSearch"
                   type="text"
@@ -236,7 +239,7 @@ const MovieTable = () => {
                 ></input>
                 </div>
                 <TableContainer className="tableGame" component={Paper}>
-                  <Table sx={{ Width: 700 }}  stickyHeader
+                  <Table  stickyHeader
                     aria-label="sticky table" >
                     <TableHead>
                       <TableRow>

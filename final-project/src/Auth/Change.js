@@ -60,17 +60,19 @@ const Change = () => {
           <div className="MainContainerUser1">
             <div className="gamesTittle">Form Change Password</div>
             <div>
-              <h1>Hai {user.name}...</h1>
+              <h1>Hai {user.name}...!</h1>
             </div>
             <div>
               <h1>{user.email}</h1>
             </div>
-
             <div style={{"display":"flex"}}>
-              <h7 style={{"float":"left"}}>Password baru : </h7><input  style={{"margin-left":"42px"}} onChange={inputPassword}></input>
+              <h7 style={{"float":"left"}}>Password lama : </h7><input type="password" style={{"margin-left":"40px","width":"350px","border-radius": "7px"}} onChange={inputPassword}></input>
+            </div>            
+            <div style={{"display":"flex"}}>
+              <h7 style={{"float":"left"}}>Password baru : </h7><input type="password" style={{"margin-left":"42px","width":"350px","border-radius": "7px"}} onChange={inputPassword}></input>
             </div>
             <div style={{"display":"flex"}}>
-              <h7 style={{"float":"left"}}>konfirmasi password : </h7><input  onChange={inputPassword2}></input>
+              <h7 style={{"float":"left"}}>konfirmasi password : </h7><input type="password" style={{"width":"350px","border-radius": "7px"}} onChange={inputPassword2}></input>
             </div>
             <div>
             <button className="buttonChangepassword" style={{"margin-top":"20px"}} onClick={changePassword}>Submit</button>

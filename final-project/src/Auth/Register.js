@@ -35,14 +35,14 @@ const Register = () => {
   return (
     <>
       <div className="MainContainer">
-        <h1 className="gamesTittle">Register</h1>
+        <h1 className="gamesTittle">Register Form</h1>
         <Form
           name="basic"
           labelCol={{
             span: 4,
           }}
           wrapperCol={{
-            span: 16,
+            span: 5,
           }}
           initialValues={{
             remember: true,
@@ -54,12 +54,13 @@ const Register = () => {
           <Form.Item
             className="textColor"
             label="Name"
-            name="name"
+            name="name"            
             rules={[
               {
                 required: true,
                 message: "Please input your Name!",
               },
+              
             ]}
           >
             <Input />

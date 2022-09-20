@@ -90,7 +90,9 @@
   display: none;
 visibility: hidden;
 }
-
+.ant-row{
+  justify-content: center;
+}
 
 .sideNav{
   background: #5CDB95;
@@ -104,6 +106,7 @@ visibility: hidden;
   color: #05386B !important;
   width: 25%;
   margin-bottom: 30px;
+  border-radius: 7px;
 }
 
 .togelSideNav{
